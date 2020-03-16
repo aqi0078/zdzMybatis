@@ -1,9 +1,13 @@
 package com.zdz.db;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.zdz"})//,"net.youqu"
+
+@MapperScan("com.zdz.db.dao")
 public class DbApplication {
 
     public static void main(String[] args) {

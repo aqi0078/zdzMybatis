@@ -1,7 +1,9 @@
 package com.zdz.db.dao;
 
 import com.zdz.db.model.Test;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface TestMapper {
     int deleteByPrimaryKey(Integer id);
 
