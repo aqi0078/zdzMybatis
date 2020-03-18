@@ -6,4 +6,5 @@ public interface HelloService {
     void test02test();
     void test03test();
     void test04test();
+    void test05test();
 }

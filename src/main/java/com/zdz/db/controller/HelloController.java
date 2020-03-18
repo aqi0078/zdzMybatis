@@ -16,24 +16,34 @@ public class HelloController {
     @RequestMapping("/hello")
     public String hello(){
         helloService.queryData(200);
+//        new Thread(){
+//            @Override
+//            public void run() {
+//                super.run();
+//                for (int i = 0; i < 100 ; i++) {
+//                    helloService.test03test();
+//                }
+//            }
+//        }.start();
+//        new Thread(){
+//            @Override
+//            public void run() {
+//                super.run();
+//                for (int i = 0; i < 100 ; i++) {
+//                    helloService.test04test();
+//                }
+//            }
+//        }.start();
         new Thread(){
             @Override
             public void run() {
                 super.run();
                 for (int i = 0; i < 100 ; i++) {
-                    helloService.test03test();
+                    helloService.test05test();
                 }
             }
         }.start();
-        new Thread(){
-            @Override
-            public void run() {
-                super.run();
-                for (int i = 0; i < 100 ; i++) {
-                    helloService.test04test();
-                }
-            }
-        }.start();
+
         return "hello------";
     }
 }

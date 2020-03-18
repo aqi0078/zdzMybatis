@@ -40,4 +40,14 @@ public class HelloServiceImpl implements HelloService {
         Test test = testMapper.selectByPrimaryKey(200);
         System.out.println(Thread.currentThread().getName()+":"+"test04test"+JSON.toJSONString(test));
     }
+
+    /**
+     * 自己类调自己方法aop失效
+     */
+    @DataSource
+    public void test05test(){
+        test03test();
+        Test test = testMapper.selectByPrimaryKey(200);
+        System.out.println(Thread.currentThread().getName()+":"+"test04test"+JSON.toJSONString(test));
+    }
 }
