@@ -21,7 +21,7 @@ public class HelloController {
             public void run() {
                 super.run();
                 for (int i = 0; i < 100 ; i++) {
-                    helloService.test01test();
+                    helloService.test03test();
                 }
             }
         }.start();
@@ -30,7 +30,7 @@ public class HelloController {
             public void run() {
                 super.run();
                 for (int i = 0; i < 100 ; i++) {
-                    helloService.test02test();
+                    helloService.test04test();
                 }
             }
         }.start();
