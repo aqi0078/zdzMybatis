@@ -16,6 +16,24 @@ public class HelloController {
     @RequestMapping("/hello")
     public String hello(){
         helloService.queryData(200);
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                for (int i = 0; i < 100 ; i++) {
+                    helloService.test01test();
+                }
+            }
+        }.start();
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                for (int i = 0; i < 100 ; i++) {
+                    helloService.test02test();
+                }
+            }
+        }.start();
         return "hello------";
     }
 }
