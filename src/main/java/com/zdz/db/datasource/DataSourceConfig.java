@@ -1,8 +1,11 @@
 package com.zdz.db.datasource;
 
+import com.zdz.db.datasource.interceptor.ints.MybatisSqlInterceptor;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -42,12 +45,16 @@ public class DataSourceConfig {
 		dataSource.setDefaultTargetDataSource(test1DataSource);
 		return dataSource;
 	}
-
+	@Autowired
+	MybatisSqlInterceptor mybatisSqlInterceptor;
+//@Autowired
+//com.zdz.db.datasource.interceptor.ints.MySqlInterceptor mySqlInterceptor;
 	@Bean(name = "SqlSessionFactory")
 	public SqlSessionFactory test1SqlSessionFactory(@Qualifier("dynamicDataSource") DataSource dynamicDataSource)
 			throws Exception {
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
 		bean.setDataSource(dynamicDataSource);
+		bean.setPlugins(new Interceptor[]{mybatisSqlInterceptor});
 		bean.setMapperLocations(
 				new PathMatchingResourcePatternResolver().getResources("classpath*:mybatis/*.xml"));
 		return bean.getObject();

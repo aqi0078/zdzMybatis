@@ -34,16 +34,17 @@ public class HelloController {
 //                }
 //            }
 //        }.start();
-        new Thread(){
-            @Override
-            public void run() {
-                super.run();
-                for (int i = 0; i < 100 ; i++) {
-                    helloService.test05test();
-                }
-            }
-        }.start();
+//        new Thread(){
+//            @Override
+//            public void run() {
+//                super.run();
+//                for (int i = 0; i < 100 ; i++) {
+//                    helloService.test05test();
+//                }
+//            }
+//        }.start();
 
+        helloService.test03test();
         return "hello------";
     }
 }
