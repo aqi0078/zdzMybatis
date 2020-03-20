@@ -1,6 +1,7 @@
 package com.zdz.db.datasource;
 
-import com.zdz.db.datasource.interceptor.ints.MybatisSqlInterceptor;
+//import com.zdz.db.datasource.interceptor.ints.MybatisSqlInterceptor;
+import com.zdz.db.datasource.interceptor.TableSplitInterceptor;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -45,16 +46,19 @@ public class DataSourceConfig {
 		dataSource.setDefaultTargetDataSource(test1DataSource);
 		return dataSource;
 	}
-	@Autowired
-	MybatisSqlInterceptor mybatisSqlInterceptor;
+//	@Autowired
+//	MybatisSqlInterceptor mybatisSqlInterceptor;
 //@Autowired
 //com.zdz.db.datasource.interceptor.ints.MySqlInterceptor mySqlInterceptor;
+@Autowired
+	com.zdz.db.datasource.interceptor.TableSplitInterceptor tableSplitInterceptor;
 	@Bean(name = "SqlSessionFactory")
 	public SqlSessionFactory test1SqlSessionFactory(@Qualifier("dynamicDataSource") DataSource dynamicDataSource)
 			throws Exception {
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
 		bean.setDataSource(dynamicDataSource);
-		bean.setPlugins(new Interceptor[]{mybatisSqlInterceptor});
+//		bean.setPlugins(new Interceptor[]{mybatisSqlInterceptor});
+		bean.setPlugins(new Interceptor[]{tableSplitInterceptor});
 		bean.setMapperLocations(
 				new PathMatchingResourcePatternResolver().getResources("classpath*:mybatis/*.xml"));
 		return bean.getObject();
