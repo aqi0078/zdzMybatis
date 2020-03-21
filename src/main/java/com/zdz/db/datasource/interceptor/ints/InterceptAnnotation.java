@@ -15,4 +15,6 @@ import java.lang.annotation.Target;
 public @interface InterceptAnnotation {
     boolean flag() default  true;
 
+    String description();
+
 }

@@ -1,5 +1,6 @@
 package com.zdz.db.datasource.interceptor;
 
+import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
 import java.text.ParseException;
@@ -11,8 +12,10 @@ import java.util.Date;
  * @author zhangdezhi
  * @date 2020-03-19
  */
+@Data
 public class YYYYMM01Strategy implements Strategy {
 
+    public String strategy;
     @Override
     public String returnTableName(String tableName, String param) {
         try {

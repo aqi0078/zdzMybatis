@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.zdz.db.dao.TestMapper;
 import com.zdz.db.datasource.DataSourceType;
 import com.zdz.db.datasource.aspect.DataSource;
+import com.zdz.db.datasource.interceptor.YYYYMM01Strategy;
 import com.zdz.db.model.Test;
 import com.zdz.db.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,15 @@ public class HelloServiceImpl implements HelloService {
     }
     @DataSource(DataSourceType.DataBaseType.TEST02)
     public void test03test(){
-        Test test = testMapper.selectByPrimaryKey(200);
+        test04test();
+        YYYYMM01Strategy yyyymm01Strategy=new YYYYMM01Strategy();
+        yyyymm01Strategy.setStrategy("20200201");
+        Test test = testMapper.selectByPrimaryKeyAnd(201,yyyymm01Strategy);
         System.out.println(Thread.currentThread().getName()+":"+"test03test"+JSON.toJSONString(test));
     }
     @DataSource
     public void test04test(){
-        Test test = testMapper.selectByPrimaryKey(200);
+        Test test = testMapper.selectByPrimaryKey(201);
         System.out.println(Thread.currentThread().getName()+":"+"test04test"+JSON.toJSONString(test));
     }
 
