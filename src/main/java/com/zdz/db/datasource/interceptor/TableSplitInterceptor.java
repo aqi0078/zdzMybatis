@@ -20,7 +20,6 @@ import java.util.Properties;
  * @date 2020-03-19
  */
 @Slf4j(topic="策略分表拦截器【TableSplitInterceptor】")
-
 @Component
 @Intercepts({ @Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class,Integer.class }) })
 public class TableSplitInterceptor implements Interceptor {
@@ -62,6 +61,7 @@ public class TableSplitInterceptor implements Interceptor {
             log.info("分表前的SQL："+originalSql);
            MappedStatement mappedStatement = (MappedStatement) metaStatementHandler.getValue("delegate.mappedStatement");
             String id = mappedStatement.getId();
+            System.out.println("id======"+id);
             String className = id.substring(0, id.lastIndexOf("."));
             Class<?> classObj = Class.forName(className);
             // 根据配置自动生成分表SQL
@@ -80,8 +80,18 @@ public class TableSplitInterceptor implements Interceptor {
                     if(rule.targetName()!=null&&!rule.targetName().isEmpty()) {
                         strategy = strategyManager.getStrategy(rule.targetName());
                     }
-                    if(!rule.paramName().isEmpty()&&!rule.tableName().isEmpty()) {
+//                    System.out.println("====="+strategy.\);
+                    if(rule.paramName().isEmpty()&&!rule.tableName().isEmpty()) {
+                        //获取 参数
+                        String newTableName = strategy.returnTableName(rule.tableName(), null);
 
+                        try {
+                            convertedSql = originalSql.replaceAll(rule.tableName(),newTableName );
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if(!rule.paramName().isEmpty()&&!rule.tableName().isEmpty()) {
                         String paramValue ="";// getParamValue(param, rule.paramName());
                         System.err.println("paramValue:"+paramValue);
                         //获取 参数

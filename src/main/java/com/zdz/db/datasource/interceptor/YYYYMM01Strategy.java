@@ -17,8 +17,9 @@ public class YYYYMM01Strategy implements Strategy {
     public String returnTableName(String tableName, String param) {
         try {
             // 结果类似 20190601
-            return tableName+ get_MM01Str(param);//"_"+
-        } catch (ParseException e) {
+            return tableName+getStrByDateFormat("yyyyMM01",new Date());
+//            return tableName+ get_MM01Str(param);//"_"+
+        } catch (Exception e) {
             e.printStackTrace();
             return tableName;
         }
