@@ -1,7 +1,7 @@
 package com.zdz.db.datasource;
 
 //import com.zdz.db.datasource.interceptor.ints.MybatisSqlInterceptor;
-import com.zdz.db.datasource.interceptor.TableSplitInterceptor;
+//import com.zdz.db.dataInterceptor.TableSplitInterceptor;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -50,8 +50,10 @@ public class DataSourceConfig {
 //	MybatisSqlInterceptor mybatisSqlInterceptor;
 //@Autowired
 //com.zdz.db.datasource.interceptor.ints.MySqlInterceptor mySqlInterceptor;
-@Autowired
-	com.zdz.db.datasource.interceptor.TableSplitInterceptor tableSplitInterceptor;
+//@Autowired
+//	com.zdz.db.datasource.interceptor.TableSplitInterceptor tableSplitInterceptor;
+	@Autowired
+	com.zdz.db.dataInterceptor.TableSplitInterceptor tableSplitInterceptor;
 	@Bean(name = "SqlSessionFactory")
 	public SqlSessionFactory test1SqlSessionFactory(@Qualifier("dynamicDataSource") DataSource dynamicDataSource)
 			throws Exception {

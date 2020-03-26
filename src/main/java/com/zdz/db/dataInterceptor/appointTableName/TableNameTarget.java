@@ -1,4 +1,4 @@
-package com.zdz.db.datasource.interceptor.ints;
+package com.zdz.db.dataInterceptor.appointTableName;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,13 +7,11 @@ import java.lang.annotation.Target;
 
 /**
  * @author zhangdezhi
- * @date 2020-03-19
+ * @date 2020-03-24
  */
-
 @Target({ElementType.METHOD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface InterceptAnnotation {
+public @interface TableNameTarget {
     boolean flag() default  true;
-    String description();
-
+    String tableName();
 }

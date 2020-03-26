@@ -1,16 +1,18 @@
 package com.zdz.db.dao;
 
-import com.zdz.db.datasource.interceptor.StrategyManager;
-import com.zdz.db.datasource.interceptor.TableSplitRule;
-import com.zdz.db.datasource.interceptor.TableSplitTarget;
-import com.zdz.db.datasource.interceptor.YYYYMM01Strategy;
-import com.zdz.db.datasource.interceptor.ints.InterceptAnnotation;
+import com.zdz.db.dataInterceptor.StrategyManager;
+import com.zdz.db.dataInterceptor.TableSplitTarget;
+import com.zdz.db.dataInterceptor.appointTableName.AppointTableName;
+import com.zdz.db.dataInterceptor.appointTableName.TableNameTarget;
+//import com.zdz.db.datasource.interceptor.StrategyManager;
+//import com.zdz.db.datasource.interceptor.TableSplitRule;
+//import com.zdz.db.datasource.interceptor.TableSplitTarget;
 import com.zdz.db.model.Test;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
-
-@TableSplitTarget(rules={@TableSplitRule(tableName="test",paramName="",targetName= StrategyManager._YYYYMM01)})
+@TableSplitTarget(interFale =true,table ="test",stategy= StrategyManager.Strategy.YYYYMM01)
+//@TableSplitTarget(rules={@TableSplitRule(tableName="test",paramName="",targetName= StrategyManager._YYYYMM01)})
 @Repository
 public interface TestMapper {
     int deleteByPrimaryKey(Integer id);
@@ -21,8 +23,8 @@ public interface TestMapper {
     Test selectByPrimaryKey(Integer id);
 //    @InterceptAnnotation(flag =true,description = {record})
 //    Test selectByTest(Test record);
-    @InterceptAnnotation(flag =true,description ="strategy")
-    Test selectByPrimaryKeyAnd(Integer id, YYYYMM01Strategy yyyymm01Strategy);
+    @TableNameTarget(flag =true,tableName ="test")
+    Test selectByPrimaryKeyAnd(Integer id, AppointTableName yyyymm01Strategy);
 
     int updateByPrimaryKeySelective(Test record);
 
