@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zdz.db.dao.CreateTableMapper" >
+  <select id="tableIsNull" parameterType="java.lang.String" resultType="java.util.Map">
+    show TABLES like  #{tableName,jdbcType=VARCHAR}
+  </select>
+  <update id="createTest" parameterType="java.lang.String" >
+    CREATE TABLE ${tableName}  (
+      `id` int(11) NOT NULL AUTO_INCREMENT,
+      `uid` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+      `package_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+      `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '创建日期',
+      PRIMARY KEY (`id`) USING BTREE
+    ) ENGINE = InnoDB AUTO_INCREMENT = 202 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  </update>
+</mapper>

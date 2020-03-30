@@ -67,23 +67,6 @@ public class TableSplitInterceptor  implements Interceptor {
             String id = mappedStatement.getId();
 
             boolean isTrue=true;
-
-            // 获取 "方法"上的注解的值
-//            Class<?> methodObj = Class.forName(id);
-//            Method[] methods = methodObj.getDeclaredMethods();
-//            for (Method method: methods) {
-//                if(!method.getName().equals(id.substring(id.lastIndexOf(".")+1))){
-//                    continue;
-//                }
-//                if(method.isAnnotationPresent(TableNameTarget.class)){
-//                    newTable= AppointTableMap.appointName.get();
-//                    TableNameTarget tableNameTarget=method.getAnnotation(TableNameTarget.class);
-//                    oldTable=tableNameTarget.tableName();
-//                    isTrue=false;
-//                }
-//                break;
-//            }
-
             String className = id.substring(0, id.lastIndexOf("."));
             Class<?> classObj = Class.forName(className);
             TableSplitTarget tableSplit = classObj.getAnnotation(TableSplitTarget.class);
