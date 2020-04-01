@@ -20,7 +20,7 @@ public class CreateTableJob {
     com.zdz.db.dao.CreateTableMapper createTableMapper;
 
 
-    @Scheduled(cron = "0/10 * * * * ?")
+//    @Scheduled(cron = "0/10 * * * * ?")
     @Async
     public void pushDataScheduled1() {
         try {

@@ -2,6 +2,7 @@ package com.zdz.db.controller;
 
 import com.zdz.db.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,5 +47,12 @@ public class HelloController {
 
         helloService.test03test();
         return "hello------";
+    }
+    @Value("${httpUrl}")
+    private String httpUrl;
+    @RequestMapping("/hello1")
+    public String hello1(){
+
+        return "hello------"+httpUrl;
     }
 }
