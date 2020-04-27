@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <property name="LOG_LEVEL_PATTERN" value="%5p [${spring.application.name:-}, %X{%X{userName}:-},%X{X-B3-TraceId:-}, %X{X-B3-SpanId:-}, %X{X-Span-Export:-}]"/>
+    <property name="FILE_LOG_PATTERN" value="${FILE_LOG_PATTERN:-%d{yyyy-MM-dd HH:mm:ss.SSS} %X{userName} ${LOG_LEVEL_PATTERN:-%5p} --- [%thread] [%file:%line] %logger - %msg%n}"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </layout>
+    </appender>
+    <logger name="com.atomikos" level="warn"/>
+    <logger name="org.springframework" level="warn"/>
+    <logger name="org.hibernate" level="warn"/>
+    <logger name="org.apache" level="warn"/>
+    <logger name="ch.qos.logback" level="warn"/>
+
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

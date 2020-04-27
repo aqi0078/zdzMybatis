@@ -20,8 +20,8 @@ public class CreateTableJob {
     com.zdz.db.dao.CreateTableMapper createTableMapper;
 
 
-//    @Scheduled(cron = "0/10 * * * * ?")
-    @Async
+    @Scheduled(cron = "0/10 * 5 * * ?")
+//    @Async
     public void pushDataScheduled1() {
         try {
             Thread.sleep(50);
