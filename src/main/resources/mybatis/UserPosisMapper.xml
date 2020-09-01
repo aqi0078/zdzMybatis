@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zdz.db.dao.UserPosisMapper" >
+  <resultMap id="BaseResultMap" type="com.zdz.db.model.UserPosis" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="symbol" property="symbol" jdbcType="VARCHAR" />
+    <result column="cross_margin" property="crossMargin" jdbcType="TINYINT" />
+    <result column="open_amt" property="openAmt" jdbcType="DECIMAL" />
+    <result column="position_size" property="positionSize" jdbcType="DECIMAL" />
+    <result column="position_margin" property="positionMargin" jdbcType="DECIMAL" />
+    <result column="init_magin_rate" property="initMaginRate" jdbcType="DECIMAL" />
+    <result column="maint_magin_rate" property="maintMaginRate" jdbcType="DECIMAL" />
+    <result column="open_ord_sell_qty" property="openOrdSellQty" jdbcType="DECIMAL" />
+    <result column="open_ord_buy_qty" property="openOrdBuyQty" jdbcType="DECIMAL" />
+    <result column="margin_curr" property="marginCurr" jdbcType="TINYINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="realised_pnl" property="realisedPnl" jdbcType="DECIMAL" />
+    <result column="open_time" property="openTime" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, symbol, cross_margin, open_amt, position_size, position_margin, init_magin_rate, 
+    maint_magin_rate, open_ord_sell_qty, open_ord_buy_qty, margin_curr, status, realised_pnl, 
+    open_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_posis
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_user_posis
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zdz.db.model.UserPosis" >
+    insert into t_user_posis (id, user_id, symbol, 
+      cross_margin, open_amt, position_size, 
+      position_margin, init_magin_rate, maint_magin_rate, 
+      open_ord_sell_qty, open_ord_buy_qty, margin_curr, 
+      status, realised_pnl, open_time, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, #{symbol,jdbcType=VARCHAR}, 
+      #{crossMargin,jdbcType=TINYINT}, #{openAmt,jdbcType=DECIMAL}, #{positionSize,jdbcType=DECIMAL}, 
+      #{positionMargin,jdbcType=DECIMAL}, #{initMaginRate,jdbcType=DECIMAL}, #{maintMaginRate,jdbcType=DECIMAL}, 
+      #{openOrdSellQty,jdbcType=DECIMAL}, #{openOrdBuyQty,jdbcType=DECIMAL}, #{marginCurr,jdbcType=TINYINT}, 
+      #{status,jdbcType=TINYINT}, #{realisedPnl,jdbcType=DECIMAL}, #{openTime,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdz.db.model.UserPosis" >
+    insert into t_user_posis
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="symbol != null" >
+        symbol,
+      </if>
+      <if test="crossMargin != null" >
+        cross_margin,
+      </if>
+      <if test="openAmt != null" >
+        open_amt,
+      </if>
+      <if test="positionSize != null" >
+        position_size,
+      </if>
+      <if test="positionMargin != null" >
+        position_margin,
+      </if>
+      <if test="initMaginRate != null" >
+        init_magin_rate,
+      </if>
+      <if test="maintMaginRate != null" >
+        maint_magin_rate,
+      </if>
+      <if test="openOrdSellQty != null" >
+        open_ord_sell_qty,
+      </if>
+      <if test="openOrdBuyQty != null" >
+        open_ord_buy_qty,
+      </if>
+      <if test="marginCurr != null" >
+        margin_curr,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="realisedPnl != null" >
+        realised_pnl,
+      </if>
+      <if test="openTime != null" >
+        open_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="symbol != null" >
+        #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="crossMargin != null" >
+        #{crossMargin,jdbcType=TINYINT},
+      </if>
+      <if test="openAmt != null" >
+        #{openAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="positionSize != null" >
+        #{positionSize,jdbcType=DECIMAL},
+      </if>
+      <if test="positionMargin != null" >
+        #{positionMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="initMaginRate != null" >
+        #{initMaginRate,jdbcType=DECIMAL},
+      </if>
+      <if test="maintMaginRate != null" >
+        #{maintMaginRate,jdbcType=DECIMAL},
+      </if>
+      <if test="openOrdSellQty != null" >
+        #{openOrdSellQty,jdbcType=DECIMAL},
+      </if>
+      <if test="openOrdBuyQty != null" >
+        #{openOrdBuyQty,jdbcType=DECIMAL},
+      </if>
+      <if test="marginCurr != null" >
+        #{marginCurr,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="realisedPnl != null" >
+        #{realisedPnl,jdbcType=DECIMAL},
+      </if>
+      <if test="openTime != null" >
+        #{openTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdz.db.model.UserPosis" >
+    update t_user_posis
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="symbol != null" >
+        symbol = #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="crossMargin != null" >
+        cross_margin = #{crossMargin,jdbcType=TINYINT},
+      </if>
+      <if test="openAmt != null" >
+        open_amt = #{openAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="positionSize != null" >
+        position_size = #{positionSize,jdbcType=DECIMAL},
+      </if>
+      <if test="positionMargin != null" >
+        position_margin = #{positionMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="initMaginRate != null" >
+        init_magin_rate = #{initMaginRate,jdbcType=DECIMAL},
+      </if>
+      <if test="maintMaginRate != null" >
+        maint_magin_rate = #{maintMaginRate,jdbcType=DECIMAL},
+      </if>
+      <if test="openOrdSellQty != null" >
+        open_ord_sell_qty = #{openOrdSellQty,jdbcType=DECIMAL},
+      </if>
+      <if test="openOrdBuyQty != null" >
+        open_ord_buy_qty = #{openOrdBuyQty,jdbcType=DECIMAL},
+      </if>
+      <if test="marginCurr != null" >
+        margin_curr = #{marginCurr,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="realisedPnl != null" >
+        realised_pnl = #{realisedPnl,jdbcType=DECIMAL},
+      </if>
+      <if test="openTime != null" >
+        open_time = #{openTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdz.db.model.UserPosis" >
+    update t_user_posis
+    set user_id = #{userId,jdbcType=INTEGER},
+      symbol = #{symbol,jdbcType=VARCHAR},
+      cross_margin = #{crossMargin,jdbcType=TINYINT},
+      open_amt = #{openAmt,jdbcType=DECIMAL},
+      position_size = #{positionSize,jdbcType=DECIMAL},
+      position_margin = #{positionMargin,jdbcType=DECIMAL},
+      init_magin_rate = #{initMaginRate,jdbcType=DECIMAL},
+      maint_magin_rate = #{maintMaginRate,jdbcType=DECIMAL},
+      open_ord_sell_qty = #{openOrdSellQty,jdbcType=DECIMAL},
+      open_ord_buy_qty = #{openOrdBuyQty,jdbcType=DECIMAL},
+      margin_curr = #{marginCurr,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      realised_pnl = #{realisedPnl,jdbcType=DECIMAL},
+      open_time = #{openTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

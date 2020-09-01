@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdz.db.dao.AccountInfoMapper">
+  <resultMap id="BaseResultMap" type="com.zdz.db.model.AccountInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="currency" jdbcType="INTEGER" property="currency" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="available_balance" jdbcType="DECIMAL" property="availableBalance" />
+    <result column="equity" jdbcType="DECIMAL" property="equity" />
+    <result column="cross_unrealised_pnl" jdbcType="DECIMAL" property="crossUnrealisedPnl" />
+    <result column="cross_ord_margin" jdbcType="DECIMAL" property="crossOrdMargin" />
+    <result column="cross_maint_margin" jdbcType="DECIMAL" property="crossMaintMargin" />
+    <result column="cross_equity" jdbcType="DECIMAL" property="crossEquity" />
+    <result column="isolated_ord_margin" jdbcType="DECIMAL" property="isolatedOrdMargin" />
+    <result column="isolated_position_margin" jdbcType="DECIMAL" property="isolatedPositionMargin" />
+    <result column="account_status" jdbcType="TINYINT" property="accountStatus" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, currency, balance, available_balance, equity, cross_unrealised_pnl, 
+    cross_ord_margin, cross_maint_margin, cross_equity, isolated_ord_margin, isolated_position_margin, 
+    account_status, update_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from account
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from account
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zdz.db.model.AccountInfo">
+    insert into account (id, user_id, currency, 
+      balance, available_balance, equity, 
+      cross_unrealised_pnl, cross_ord_margin, cross_maint_margin, 
+      cross_equity, isolated_ord_margin, isolated_position_margin, 
+      account_status, update_time, create_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, #{currency,jdbcType=INTEGER}, 
+      #{balance,jdbcType=DECIMAL}, #{availableBalance,jdbcType=DECIMAL}, #{equity,jdbcType=DECIMAL}, 
+      #{crossUnrealisedPnl,jdbcType=DECIMAL}, #{crossOrdMargin,jdbcType=DECIMAL}, #{crossMaintMargin,jdbcType=DECIMAL}, 
+      #{crossEquity,jdbcType=DECIMAL}, #{isolatedOrdMargin,jdbcType=DECIMAL}, #{isolatedPositionMargin,jdbcType=DECIMAL}, 
+      #{accountStatus,jdbcType=TINYINT}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdz.db.model.AccountInfo">
+    insert into account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="currency != null">
+        currency,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="availableBalance != null">
+        available_balance,
+      </if>
+      <if test="equity != null">
+        equity,
+      </if>
+      <if test="crossUnrealisedPnl != null">
+        cross_unrealised_pnl,
+      </if>
+      <if test="crossOrdMargin != null">
+        cross_ord_margin,
+      </if>
+      <if test="crossMaintMargin != null">
+        cross_maint_margin,
+      </if>
+      <if test="crossEquity != null">
+        cross_equity,
+      </if>
+      <if test="isolatedOrdMargin != null">
+        isolated_ord_margin,
+      </if>
+      <if test="isolatedPositionMargin != null">
+        isolated_position_margin,
+      </if>
+      <if test="accountStatus != null">
+        account_status,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="availableBalance != null">
+        #{availableBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="equity != null">
+        #{equity,jdbcType=DECIMAL},
+      </if>
+      <if test="crossUnrealisedPnl != null">
+        #{crossUnrealisedPnl,jdbcType=DECIMAL},
+      </if>
+      <if test="crossOrdMargin != null">
+        #{crossOrdMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="crossMaintMargin != null">
+        #{crossMaintMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="crossEquity != null">
+        #{crossEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="isolatedOrdMargin != null">
+        #{isolatedOrdMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="isolatedPositionMargin != null">
+        #{isolatedPositionMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="accountStatus != null">
+        #{accountStatus,jdbcType=TINYINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdz.db.model.AccountInfo">
+    update account
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="currency != null">
+        currency = #{currency,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="availableBalance != null">
+        available_balance = #{availableBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="equity != null">
+        equity = #{equity,jdbcType=DECIMAL},
+      </if>
+      <if test="crossUnrealisedPnl != null">
+        cross_unrealised_pnl = #{crossUnrealisedPnl,jdbcType=DECIMAL},
+      </if>
+      <if test="crossOrdMargin != null">
+        cross_ord_margin = #{crossOrdMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="crossMaintMargin != null">
+        cross_maint_margin = #{crossMaintMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="crossEquity != null">
+        cross_equity = #{crossEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="isolatedOrdMargin != null">
+        isolated_ord_margin = #{isolatedOrdMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="isolatedPositionMargin != null">
+        isolated_position_margin = #{isolatedPositionMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="accountStatus != null">
+        account_status = #{accountStatus,jdbcType=TINYINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdz.db.model.AccountInfo">
+    update account
+    set user_id = #{userId,jdbcType=INTEGER},
+      currency = #{currency,jdbcType=INTEGER},
+      balance = #{balance,jdbcType=DECIMAL},
+      available_balance = #{availableBalance,jdbcType=DECIMAL},
+      equity = #{equity,jdbcType=DECIMAL},
+      cross_unrealised_pnl = #{crossUnrealisedPnl,jdbcType=DECIMAL},
+      cross_ord_margin = #{crossOrdMargin,jdbcType=DECIMAL},
+      cross_maint_margin = #{crossMaintMargin,jdbcType=DECIMAL},
+      cross_equity = #{crossEquity,jdbcType=DECIMAL},
+      isolated_ord_margin = #{isolatedOrdMargin,jdbcType=DECIMAL},
+      isolated_position_margin = #{isolatedPositionMargin,jdbcType=DECIMAL},
+      account_status = #{accountStatus,jdbcType=TINYINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zdz.db.model.AccountInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="currency" jdbcType="BIGINT" property="currency" />
+    <result column="balance" jdbcType="VARCHAR" property="balance" />
+    <result column="available_balance" jdbcType="VARCHAR" property="availableBalance" />
+    <result column="equity" jdbcType="VARCHAR" property="equity" />
+    <result column="cross_unrealised_pnl" jdbcType="VARCHAR" property="crossUnrealisedPnl" />
+    <result column="cross_ord_margin" jdbcType="VARCHAR" property="crossOrdMargin" />
+    <result column="cross_maint_margin" jdbcType="VARCHAR" property="crossMaintMargin" />
+    <result column="cross_equity" jdbcType="VARCHAR" property="crossEquity" />
+    <result column="isolated_ord_margin" jdbcType="VARCHAR" property="isolatedOrdMargin" />
+    <result column="isolated_position_margin" jdbcType="VARCHAR" property="isolatedPositionMargin" />
+    <result column="account_status" jdbcType="TINYINT" property="accountStatus" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, currency, balance, available_balance, equity, cross_unrealised_pnl, cross_ord_margin, 
+    cross_maint_margin, cross_equity, isolated_ord_margin, isolated_position_margin, 
+    account_status, update_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from account
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from account
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zdz.db.model.AccountInfo">
+    insert into account (id, currency, balance, 
+      available_balance, equity, cross_unrealised_pnl, 
+      cross_ord_margin, cross_maint_margin, cross_equity, 
+      isolated_ord_margin, isolated_position_margin, 
+      account_status, update_time, create_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{currency,jdbcType=BIGINT}, #{balance,jdbcType=VARCHAR}, 
+      #{availableBalance,jdbcType=VARCHAR}, #{equity,jdbcType=VARCHAR}, #{crossUnrealisedPnl,jdbcType=VARCHAR}, 
+      #{crossOrdMargin,jdbcType=VARCHAR}, #{crossMaintMargin,jdbcType=VARCHAR}, #{crossEquity,jdbcType=VARCHAR}, 
+      #{isolatedOrdMargin,jdbcType=VARCHAR}, #{isolatedPositionMargin,jdbcType=VARCHAR}, 
+      #{accountStatus,jdbcType=TINYINT}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdz.db.model.AccountInfo">
+    insert into account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="currency != null">
+        currency,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="availableBalance != null">
+        available_balance,
+      </if>
+      <if test="equity != null">
+        equity,
+      </if>
+      <if test="crossUnrealisedPnl != null">
+        cross_unrealised_pnl,
+      </if>
+      <if test="crossOrdMargin != null">
+        cross_ord_margin,
+      </if>
+      <if test="crossMaintMargin != null">
+        cross_maint_margin,
+      </if>
+      <if test="crossEquity != null">
+        cross_equity,
+      </if>
+      <if test="isolatedOrdMargin != null">
+        isolated_ord_margin,
+      </if>
+      <if test="isolatedPositionMargin != null">
+        isolated_position_margin,
+      </if>
+      <if test="accountStatus != null">
+        account_status,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=BIGINT},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=VARCHAR},
+      </if>
+      <if test="availableBalance != null">
+        #{availableBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="equity != null">
+        #{equity,jdbcType=VARCHAR},
+      </if>
+      <if test="crossUnrealisedPnl != null">
+        #{crossUnrealisedPnl,jdbcType=VARCHAR},
+      </if>
+      <if test="crossOrdMargin != null">
+        #{crossOrdMargin,jdbcType=VARCHAR},
+      </if>
+      <if test="crossMaintMargin != null">
+        #{crossMaintMargin,jdbcType=VARCHAR},
+      </if>
+      <if test="crossEquity != null">
+        #{crossEquity,jdbcType=VARCHAR},
+      </if>
+      <if test="isolatedOrdMargin != null">
+        #{isolatedOrdMargin,jdbcType=VARCHAR},
+      </if>
+      <if test="isolatedPositionMargin != null">
+        #{isolatedPositionMargin,jdbcType=VARCHAR},
+      </if>
+      <if test="accountStatus != null">
+        #{accountStatus,jdbcType=TINYINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdz.db.model.AccountInfo">
+    update account
+    <set>
+      <if test="currency != null">
+        currency = #{currency,jdbcType=BIGINT},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=VARCHAR},
+      </if>
+      <if test="availableBalance != null">
+        available_balance = #{availableBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="equity != null">
+        equity = #{equity,jdbcType=VARCHAR},
+      </if>
+      <if test="crossUnrealisedPnl != null">
+        cross_unrealised_pnl = #{crossUnrealisedPnl,jdbcType=VARCHAR},
+      </if>
+      <if test="crossOrdMargin != null">
+        cross_ord_margin = #{crossOrdMargin,jdbcType=VARCHAR},
+      </if>
+      <if test="crossMaintMargin != null">
+        cross_maint_margin = #{crossMaintMargin,jdbcType=VARCHAR},
+      </if>
+      <if test="crossEquity != null">
+        cross_equity = #{crossEquity,jdbcType=VARCHAR},
+      </if>
+      <if test="isolatedOrdMargin != null">
+        isolated_ord_margin = #{isolatedOrdMargin,jdbcType=VARCHAR},
+      </if>
+      <if test="isolatedPositionMargin != null">
+        isolated_position_margin = #{isolatedPositionMargin,jdbcType=VARCHAR},
+      </if>
+      <if test="accountStatus != null">
+        account_status = #{accountStatus,jdbcType=TINYINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdz.db.model.AccountInfo">
+    update account
+    set currency = #{currency,jdbcType=BIGINT},
+      balance = #{balance,jdbcType=VARCHAR},
+      available_balance = #{availableBalance,jdbcType=VARCHAR},
+      equity = #{equity,jdbcType=VARCHAR},
+      cross_unrealised_pnl = #{crossUnrealisedPnl,jdbcType=VARCHAR},
+      cross_ord_margin = #{crossOrdMargin,jdbcType=VARCHAR},
+      cross_maint_margin = #{crossMaintMargin,jdbcType=VARCHAR},
+      cross_equity = #{crossEquity,jdbcType=VARCHAR},
+      isolated_ord_margin = #{isolatedOrdMargin,jdbcType=VARCHAR},
+      isolated_position_margin = #{isolatedPositionMargin,jdbcType=VARCHAR},
+      account_status = #{accountStatus,jdbcType=TINYINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

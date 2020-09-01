@@ -62,7 +62,7 @@ public class DataSourceConfig {
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
 		bean.setDataSource(dynamicDataSource);
 //		bean.setPlugins(new Interceptor[]{mybatisSqlInterceptor});
-		bean.setPlugins(new Interceptor[]{tableSplitInterceptor});
+//		bean.setPlugins(new Interceptor[]{nagc});
 		bean.setMapperLocations(
 				new PathMatchingResourcePatternResolver().getResources("classpath*:mybatis/*.xml"));
 		return bean.getObject();

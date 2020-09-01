@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdz.db.dao.UserMatchMapper">
+  <resultMap id="BaseResultMap" type="com.zdz.db.model.UserMatch">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="exec_id" jdbcType="VARCHAR" property="execId" />
+    <result column="symbol" jdbcType="VARCHAR" property="symbol" />
+    <result column="side" jdbcType="VARCHAR" property="side" />
+    <result column="bid_user_id" jdbcType="INTEGER" property="bidUserId" />
+    <result column="ask_user_id" jdbcType="INTEGER" property="askUserId" />
+    <result column="bid_order_id" jdbcType="INTEGER" property="bidOrderId" />
+    <result column="ask_order_id" jdbcType="INTEGER" property="askOrderId" />
+    <result column="last_qty" jdbcType="INTEGER" property="lastQty" />
+    <result column="last_px" jdbcType="DECIMAL" property="lastPx" />
+    <result column="gross_trade_amt" jdbcType="DECIMAL" property="grossTradeAmt" />
+    <result column="bid_match_type" jdbcType="TINYINT" property="bidMatchType" />
+    <result column="ask_match_type" jdbcType="TINYINT" property="askMatchType" />
+    <result column="bid_pnl_type" jdbcType="TINYINT" property="bidPnlType" />
+    <result column="ask_pnl_type" jdbcType="TINYINT" property="askPnlType" />
+    <result column="execTime" jdbcType="BIGINT" property="exectime" />
+    <result column="bid_fee" jdbcType="DECIMAL" property="bidFee" />
+    <result column="ask_fee" jdbcType="DECIMAL" property="askFee" />
+    <result column="bid_pnl" jdbcType="DECIMAL" property="bidPnl" />
+    <result column="ask_pnl" jdbcType="DECIMAL" property="askPnl" />
+    <result column="bid_confiscated_amt" jdbcType="DECIMAL" property="bidConfiscatedAmt" />
+    <result column="ask_confiscated_amt" jdbcType="DECIMAL" property="askConfiscatedAmt" />
+    <result column="self_trade_qty" jdbcType="INTEGER" property="selfTradeQty" />
+    <result column="version" jdbcType="BIGINT" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, exec_id, symbol, side, bid_user_id, ask_user_id, bid_order_id, ask_order_id, 
+    last_qty, last_px, gross_trade_amt, bid_match_type, ask_match_type, bid_pnl_type, 
+    ask_pnl_type, execTime, bid_fee, ask_fee, bid_pnl, ask_pnl, bid_confiscated_amt, 
+    ask_confiscated_amt, self_trade_qty, version
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_match
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_user_match
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zdz.db.model.UserMatch">
+    insert into t_user_match (id, exec_id, symbol, 
+      side, bid_user_id, ask_user_id, 
+      bid_order_id, ask_order_id, last_qty, 
+      last_px, gross_trade_amt, bid_match_type, 
+      ask_match_type, bid_pnl_type, ask_pnl_type, 
+      execTime, bid_fee, ask_fee, 
+      bid_pnl, ask_pnl, bid_confiscated_amt, 
+      ask_confiscated_amt, self_trade_qty, version
+      )
+    values (#{id,jdbcType=BIGINT}, #{execId,jdbcType=VARCHAR}, #{symbol,jdbcType=VARCHAR}, 
+      #{side,jdbcType=VARCHAR}, #{bidUserId,jdbcType=INTEGER}, #{askUserId,jdbcType=INTEGER}, 
+      #{bidOrderId,jdbcType=INTEGER}, #{askOrderId,jdbcType=INTEGER}, #{lastQty,jdbcType=INTEGER}, 
+      #{lastPx,jdbcType=DECIMAL}, #{grossTradeAmt,jdbcType=DECIMAL}, #{bidMatchType,jdbcType=TINYINT}, 
+      #{askMatchType,jdbcType=TINYINT}, #{bidPnlType,jdbcType=TINYINT}, #{askPnlType,jdbcType=TINYINT}, 
+      #{exectime,jdbcType=BIGINT}, #{bidFee,jdbcType=DECIMAL}, #{askFee,jdbcType=DECIMAL}, 
+      #{bidPnl,jdbcType=DECIMAL}, #{askPnl,jdbcType=DECIMAL}, #{bidConfiscatedAmt,jdbcType=DECIMAL}, 
+      #{askConfiscatedAmt,jdbcType=DECIMAL}, #{selfTradeQty,jdbcType=INTEGER}, #{version,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdz.db.model.UserMatch">
+    insert into t_user_match
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="execId != null">
+        exec_id,
+      </if>
+      <if test="symbol != null">
+        symbol,
+      </if>
+      <if test="side != null">
+        side,
+      </if>
+      <if test="bidUserId != null">
+        bid_user_id,
+      </if>
+      <if test="askUserId != null">
+        ask_user_id,
+      </if>
+      <if test="bidOrderId != null">
+        bid_order_id,
+      </if>
+      <if test="askOrderId != null">
+        ask_order_id,
+      </if>
+      <if test="lastQty != null">
+        last_qty,
+      </if>
+      <if test="lastPx != null">
+        last_px,
+      </if>
+      <if test="grossTradeAmt != null">
+        gross_trade_amt,
+      </if>
+      <if test="bidMatchType != null">
+        bid_match_type,
+      </if>
+      <if test="askMatchType != null">
+        ask_match_type,
+      </if>
+      <if test="bidPnlType != null">
+        bid_pnl_type,
+      </if>
+      <if test="askPnlType != null">
+        ask_pnl_type,
+      </if>
+      <if test="exectime != null">
+        execTime,
+      </if>
+      <if test="bidFee != null">
+        bid_fee,
+      </if>
+      <if test="askFee != null">
+        ask_fee,
+      </if>
+      <if test="bidPnl != null">
+        bid_pnl,
+      </if>
+      <if test="askPnl != null">
+        ask_pnl,
+      </if>
+      <if test="bidConfiscatedAmt != null">
+        bid_confiscated_amt,
+      </if>
+      <if test="askConfiscatedAmt != null">
+        ask_confiscated_amt,
+      </if>
+      <if test="selfTradeQty != null">
+        self_trade_qty,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="execId != null">
+        #{execId,jdbcType=VARCHAR},
+      </if>
+      <if test="symbol != null">
+        #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="side != null">
+        #{side,jdbcType=VARCHAR},
+      </if>
+      <if test="bidUserId != null">
+        #{bidUserId,jdbcType=INTEGER},
+      </if>
+      <if test="askUserId != null">
+        #{askUserId,jdbcType=INTEGER},
+      </if>
+      <if test="bidOrderId != null">
+        #{bidOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="askOrderId != null">
+        #{askOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="lastQty != null">
+        #{lastQty,jdbcType=INTEGER},
+      </if>
+      <if test="lastPx != null">
+        #{lastPx,jdbcType=DECIMAL},
+      </if>
+      <if test="grossTradeAmt != null">
+        #{grossTradeAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="bidMatchType != null">
+        #{bidMatchType,jdbcType=TINYINT},
+      </if>
+      <if test="askMatchType != null">
+        #{askMatchType,jdbcType=TINYINT},
+      </if>
+      <if test="bidPnlType != null">
+        #{bidPnlType,jdbcType=TINYINT},
+      </if>
+      <if test="askPnlType != null">
+        #{askPnlType,jdbcType=TINYINT},
+      </if>
+      <if test="exectime != null">
+        #{exectime,jdbcType=BIGINT},
+      </if>
+      <if test="bidFee != null">
+        #{bidFee,jdbcType=DECIMAL},
+      </if>
+      <if test="askFee != null">
+        #{askFee,jdbcType=DECIMAL},
+      </if>
+      <if test="bidPnl != null">
+        #{bidPnl,jdbcType=DECIMAL},
+      </if>
+      <if test="askPnl != null">
+        #{askPnl,jdbcType=DECIMAL},
+      </if>
+      <if test="bidConfiscatedAmt != null">
+        #{bidConfiscatedAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="askConfiscatedAmt != null">
+        #{askConfiscatedAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="selfTradeQty != null">
+        #{selfTradeQty,jdbcType=INTEGER},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdz.db.model.UserMatch">
+    update t_user_match
+    <set>
+      <if test="execId != null">
+        exec_id = #{execId,jdbcType=VARCHAR},
+      </if>
+      <if test="symbol != null">
+        symbol = #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="side != null">
+        side = #{side,jdbcType=VARCHAR},
+      </if>
+      <if test="bidUserId != null">
+        bid_user_id = #{bidUserId,jdbcType=INTEGER},
+      </if>
+      <if test="askUserId != null">
+        ask_user_id = #{askUserId,jdbcType=INTEGER},
+      </if>
+      <if test="bidOrderId != null">
+        bid_order_id = #{bidOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="askOrderId != null">
+        ask_order_id = #{askOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="lastQty != null">
+        last_qty = #{lastQty,jdbcType=INTEGER},
+      </if>
+      <if test="lastPx != null">
+        last_px = #{lastPx,jdbcType=DECIMAL},
+      </if>
+      <if test="grossTradeAmt != null">
+        gross_trade_amt = #{grossTradeAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="bidMatchType != null">
+        bid_match_type = #{bidMatchType,jdbcType=TINYINT},
+      </if>
+      <if test="askMatchType != null">
+        ask_match_type = #{askMatchType,jdbcType=TINYINT},
+      </if>
+      <if test="bidPnlType != null">
+        bid_pnl_type = #{bidPnlType,jdbcType=TINYINT},
+      </if>
+      <if test="askPnlType != null">
+        ask_pnl_type = #{askPnlType,jdbcType=TINYINT},
+      </if>
+      <if test="exectime != null">
+        execTime = #{exectime,jdbcType=BIGINT},
+      </if>
+      <if test="bidFee != null">
+        bid_fee = #{bidFee,jdbcType=DECIMAL},
+      </if>
+      <if test="askFee != null">
+        ask_fee = #{askFee,jdbcType=DECIMAL},
+      </if>
+      <if test="bidPnl != null">
+        bid_pnl = #{bidPnl,jdbcType=DECIMAL},
+      </if>
+      <if test="askPnl != null">
+        ask_pnl = #{askPnl,jdbcType=DECIMAL},
+      </if>
+      <if test="bidConfiscatedAmt != null">
+        bid_confiscated_amt = #{bidConfiscatedAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="askConfiscatedAmt != null">
+        ask_confiscated_amt = #{askConfiscatedAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="selfTradeQty != null">
+        self_trade_qty = #{selfTradeQty,jdbcType=INTEGER},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdz.db.model.UserMatch">
+    update t_user_match
+    set exec_id = #{execId,jdbcType=VARCHAR},
+      symbol = #{symbol,jdbcType=VARCHAR},
+      side = #{side,jdbcType=VARCHAR},
+      bid_user_id = #{bidUserId,jdbcType=INTEGER},
+      ask_user_id = #{askUserId,jdbcType=INTEGER},
+      bid_order_id = #{bidOrderId,jdbcType=INTEGER},
+      ask_order_id = #{askOrderId,jdbcType=INTEGER},
+      last_qty = #{lastQty,jdbcType=INTEGER},
+      last_px = #{lastPx,jdbcType=DECIMAL},
+      gross_trade_amt = #{grossTradeAmt,jdbcType=DECIMAL},
+      bid_match_type = #{bidMatchType,jdbcType=TINYINT},
+      ask_match_type = #{askMatchType,jdbcType=TINYINT},
+      bid_pnl_type = #{bidPnlType,jdbcType=TINYINT},
+      ask_pnl_type = #{askPnlType,jdbcType=TINYINT},
+      execTime = #{exectime,jdbcType=BIGINT},
+      bid_fee = #{bidFee,jdbcType=DECIMAL},
+      ask_fee = #{askFee,jdbcType=DECIMAL},
+      bid_pnl = #{bidPnl,jdbcType=DECIMAL},
+      ask_pnl = #{askPnl,jdbcType=DECIMAL},
+      bid_confiscated_amt = #{bidConfiscatedAmt,jdbcType=DECIMAL},
+      ask_confiscated_amt = #{askConfiscatedAmt,jdbcType=DECIMAL},
+      self_trade_qty = #{selfTradeQty,jdbcType=INTEGER},
+      version = #{version,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zdz.db.model.UserMatch">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="exec_id" jdbcType="VARCHAR" property="execId" />
+    <result column="symbol" jdbcType="VARCHAR" property="symbol" />
+    <result column="side" jdbcType="VARCHAR" property="side" />
+    <result column="bid_user_id" jdbcType="INTEGER" property="bidUserId" />
+    <result column="ask_user_id" jdbcType="INTEGER" property="askUserId" />
+    <result column="bid_order_id" jdbcType="INTEGER" property="bidOrderId" />
+    <result column="ask_order_id" jdbcType="INTEGER" property="askOrderId" />
+    <result column="lastQty" jdbcType="INTEGER" property="lastqty" />
+    <result column="lastPx" jdbcType="DECIMAL" property="lastpx" />
+    <result column="grossTradeAmt" jdbcType="DECIMAL" property="grosstradeamt" />
+    <result column="bid_match_type" jdbcType="TINYINT" property="bidMatchType" />
+    <result column="ask_match_type" jdbcType="TINYINT" property="askMatchType" />
+    <result column="bid_pnl_type" jdbcType="TINYINT" property="bidPnlType" />
+    <result column="ask_pnl_type" jdbcType="TINYINT" property="askPnlType" />
+    <result column="execTime" jdbcType="BIGINT" property="exectime" />
+    <result column="bid_fee" jdbcType="DECIMAL" property="bidFee" />
+    <result column="ask_fee" jdbcType="DECIMAL" property="askFee" />
+    <result column="bid_pnl" jdbcType="DECIMAL" property="bidPnl" />
+    <result column="ask_pnl" jdbcType="DECIMAL" property="askPnl" />
+    <result column="bid_confiscated_amt" jdbcType="DECIMAL" property="bidConfiscatedAmt" />
+    <result column="ask_confiscated_amt" jdbcType="DECIMAL" property="askConfiscatedAmt" />
+    <result column="selfTradeQty" jdbcType="INTEGER" property="selftradeqty" />
+    <result column="version" jdbcType="BIGINT" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, exec_id, symbol, side, bid_user_id, ask_user_id, bid_order_id, ask_order_id, 
+    lastQty, lastPx, grossTradeAmt, bid_match_type, ask_match_type, bid_pnl_type, ask_pnl_type, 
+    execTime, bid_fee, ask_fee, bid_pnl, ask_pnl, bid_confiscated_amt, ask_confiscated_amt, 
+    selfTradeQty, version
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_match
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_user_match
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zdz.db.model.UserMatch">
+    insert into t_user_match (id, exec_id, symbol, 
+      side, bid_user_id, ask_user_id, 
+      bid_order_id, ask_order_id, lastQty, 
+      lastPx, grossTradeAmt, bid_match_type, 
+      ask_match_type, bid_pnl_type, ask_pnl_type, 
+      execTime, bid_fee, ask_fee, 
+      bid_pnl, ask_pnl, bid_confiscated_amt, 
+      ask_confiscated_amt, selfTradeQty, version
+      )
+    values (#{id,jdbcType=BIGINT}, #{execId,jdbcType=VARCHAR}, #{symbol,jdbcType=VARCHAR}, 
+      #{side,jdbcType=VARCHAR}, #{bidUserId,jdbcType=INTEGER}, #{askUserId,jdbcType=INTEGER}, 
+      #{bidOrderId,jdbcType=INTEGER}, #{askOrderId,jdbcType=INTEGER}, #{lastqty,jdbcType=INTEGER}, 
+      #{lastpx,jdbcType=DECIMAL}, #{grosstradeamt,jdbcType=DECIMAL}, #{bidMatchType,jdbcType=TINYINT}, 
+      #{askMatchType,jdbcType=TINYINT}, #{bidPnlType,jdbcType=TINYINT}, #{askPnlType,jdbcType=TINYINT}, 
+      #{exectime,jdbcType=BIGINT}, #{bidFee,jdbcType=DECIMAL}, #{askFee,jdbcType=DECIMAL}, 
+      #{bidPnl,jdbcType=DECIMAL}, #{askPnl,jdbcType=DECIMAL}, #{bidConfiscatedAmt,jdbcType=DECIMAL}, 
+      #{askConfiscatedAmt,jdbcType=DECIMAL}, #{selftradeqty,jdbcType=INTEGER}, #{version,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdz.db.model.UserMatch">
+    insert into t_user_match
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="execId != null">
+        exec_id,
+      </if>
+      <if test="symbol != null">
+        symbol,
+      </if>
+      <if test="side != null">
+        side,
+      </if>
+      <if test="bidUserId != null">
+        bid_user_id,
+      </if>
+      <if test="askUserId != null">
+        ask_user_id,
+      </if>
+      <if test="bidOrderId != null">
+        bid_order_id,
+      </if>
+      <if test="askOrderId != null">
+        ask_order_id,
+      </if>
+      <if test="lastqty != null">
+        lastQty,
+      </if>
+      <if test="lastpx != null">
+        lastPx,
+      </if>
+      <if test="grosstradeamt != null">
+        grossTradeAmt,
+      </if>
+      <if test="bidMatchType != null">
+        bid_match_type,
+      </if>
+      <if test="askMatchType != null">
+        ask_match_type,
+      </if>
+      <if test="bidPnlType != null">
+        bid_pnl_type,
+      </if>
+      <if test="askPnlType != null">
+        ask_pnl_type,
+      </if>
+      <if test="exectime != null">
+        execTime,
+      </if>
+      <if test="bidFee != null">
+        bid_fee,
+      </if>
+      <if test="askFee != null">
+        ask_fee,
+      </if>
+      <if test="bidPnl != null">
+        bid_pnl,
+      </if>
+      <if test="askPnl != null">
+        ask_pnl,
+      </if>
+      <if test="bidConfiscatedAmt != null">
+        bid_confiscated_amt,
+      </if>
+      <if test="askConfiscatedAmt != null">
+        ask_confiscated_amt,
+      </if>
+      <if test="selftradeqty != null">
+        selfTradeQty,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="execId != null">
+        #{execId,jdbcType=VARCHAR},
+      </if>
+      <if test="symbol != null">
+        #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="side != null">
+        #{side,jdbcType=VARCHAR},
+      </if>
+      <if test="bidUserId != null">
+        #{bidUserId,jdbcType=INTEGER},
+      </if>
+      <if test="askUserId != null">
+        #{askUserId,jdbcType=INTEGER},
+      </if>
+      <if test="bidOrderId != null">
+        #{bidOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="askOrderId != null">
+        #{askOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="lastqty != null">
+        #{lastqty,jdbcType=INTEGER},
+      </if>
+      <if test="lastpx != null">
+        #{lastpx,jdbcType=DECIMAL},
+      </if>
+      <if test="grosstradeamt != null">
+        #{grosstradeamt,jdbcType=DECIMAL},
+      </if>
+      <if test="bidMatchType != null">
+        #{bidMatchType,jdbcType=TINYINT},
+      </if>
+      <if test="askMatchType != null">
+        #{askMatchType,jdbcType=TINYINT},
+      </if>
+      <if test="bidPnlType != null">
+        #{bidPnlType,jdbcType=TINYINT},
+      </if>
+      <if test="askPnlType != null">
+        #{askPnlType,jdbcType=TINYINT},
+      </if>
+      <if test="exectime != null">
+        #{exectime,jdbcType=BIGINT},
+      </if>
+      <if test="bidFee != null">
+        #{bidFee,jdbcType=DECIMAL},
+      </if>
+      <if test="askFee != null">
+        #{askFee,jdbcType=DECIMAL},
+      </if>
+      <if test="bidPnl != null">
+        #{bidPnl,jdbcType=DECIMAL},
+      </if>
+      <if test="askPnl != null">
+        #{askPnl,jdbcType=DECIMAL},
+      </if>
+      <if test="bidConfiscatedAmt != null">
+        #{bidConfiscatedAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="askConfiscatedAmt != null">
+        #{askConfiscatedAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="selftradeqty != null">
+        #{selftradeqty,jdbcType=INTEGER},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdz.db.model.UserMatch">
+    update t_user_match
+    <set>
+      <if test="execId != null">
+        exec_id = #{execId,jdbcType=VARCHAR},
+      </if>
+      <if test="symbol != null">
+        symbol = #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="side != null">
+        side = #{side,jdbcType=VARCHAR},
+      </if>
+      <if test="bidUserId != null">
+        bid_user_id = #{bidUserId,jdbcType=INTEGER},
+      </if>
+      <if test="askUserId != null">
+        ask_user_id = #{askUserId,jdbcType=INTEGER},
+      </if>
+      <if test="bidOrderId != null">
+        bid_order_id = #{bidOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="askOrderId != null">
+        ask_order_id = #{askOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="lastqty != null">
+        lastQty = #{lastqty,jdbcType=INTEGER},
+      </if>
+      <if test="lastpx != null">
+        lastPx = #{lastpx,jdbcType=DECIMAL},
+      </if>
+      <if test="grosstradeamt != null">
+        grossTradeAmt = #{grosstradeamt,jdbcType=DECIMAL},
+      </if>
+      <if test="bidMatchType != null">
+        bid_match_type = #{bidMatchType,jdbcType=TINYINT},
+      </if>
+      <if test="askMatchType != null">
+        ask_match_type = #{askMatchType,jdbcType=TINYINT},
+      </if>
+      <if test="bidPnlType != null">
+        bid_pnl_type = #{bidPnlType,jdbcType=TINYINT},
+      </if>
+      <if test="askPnlType != null">
+        ask_pnl_type = #{askPnlType,jdbcType=TINYINT},
+      </if>
+      <if test="exectime != null">
+        execTime = #{exectime,jdbcType=BIGINT},
+      </if>
+      <if test="bidFee != null">
+        bid_fee = #{bidFee,jdbcType=DECIMAL},
+      </if>
+      <if test="askFee != null">
+        ask_fee = #{askFee,jdbcType=DECIMAL},
+      </if>
+      <if test="bidPnl != null">
+        bid_pnl = #{bidPnl,jdbcType=DECIMAL},
+      </if>
+      <if test="askPnl != null">
+        ask_pnl = #{askPnl,jdbcType=DECIMAL},
+      </if>
+      <if test="bidConfiscatedAmt != null">
+        bid_confiscated_amt = #{bidConfiscatedAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="askConfiscatedAmt != null">
+        ask_confiscated_amt = #{askConfiscatedAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="selftradeqty != null">
+        selfTradeQty = #{selftradeqty,jdbcType=INTEGER},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdz.db.model.UserMatch">
+    update t_user_match
+    set exec_id = #{execId,jdbcType=VARCHAR},
+      symbol = #{symbol,jdbcType=VARCHAR},
+      side = #{side,jdbcType=VARCHAR},
+      bid_user_id = #{bidUserId,jdbcType=INTEGER},
+      ask_user_id = #{askUserId,jdbcType=INTEGER},
+      bid_order_id = #{bidOrderId,jdbcType=INTEGER},
+      ask_order_id = #{askOrderId,jdbcType=INTEGER},
+      lastQty = #{lastqty,jdbcType=INTEGER},
+      lastPx = #{lastpx,jdbcType=DECIMAL},
+      grossTradeAmt = #{grosstradeamt,jdbcType=DECIMAL},
+      bid_match_type = #{bidMatchType,jdbcType=TINYINT},
+      ask_match_type = #{askMatchType,jdbcType=TINYINT},
+      bid_pnl_type = #{bidPnlType,jdbcType=TINYINT},
+      ask_pnl_type = #{askPnlType,jdbcType=TINYINT},
+      execTime = #{exectime,jdbcType=BIGINT},
+      bid_fee = #{bidFee,jdbcType=DECIMAL},
+      ask_fee = #{askFee,jdbcType=DECIMAL},
+      bid_pnl = #{bidPnl,jdbcType=DECIMAL},
+      ask_pnl = #{askPnl,jdbcType=DECIMAL},
+      bid_confiscated_amt = #{bidConfiscatedAmt,jdbcType=DECIMAL},
+      ask_confiscated_amt = #{askConfiscatedAmt,jdbcType=DECIMAL},
+      selfTradeQty = #{selftradeqty,jdbcType=INTEGER},
+      version = #{version,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zdz.db.dao.UserAssetFlowMapper" >
+  <resultMap id="BaseResultMap" type="com.zdz.db.model.UserAssetFlow" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="currency" property="currency" jdbcType="INTEGER" />
+    <result column="flow_status" property="flowStatus" jdbcType="TINYINT" />
+    <result column="flow_amt" property="flowAmt" jdbcType="DECIMAL" />
+    <result column="relation_id" property="relationId" jdbcType="BIGINT" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="occure_time" property="occureTime" jdbcType="BIGINT" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, currency, flow_status, flow_amt, relation_id, version, occure_time, 
+    note, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_asset_flow
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_user_asset_flow
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zdz.db.model.UserAssetFlow" >
+    insert into t_user_asset_flow (id, user_id, currency, 
+      flow_status, flow_amt, relation_id, 
+      version, occure_time, note, 
+      create_time)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, #{currency,jdbcType=INTEGER}, 
+      #{flowStatus,jdbcType=TINYINT}, #{flowAmt,jdbcType=DECIMAL}, #{relationId,jdbcType=BIGINT}, 
+      #{version,jdbcType=INTEGER}, #{occureTime,jdbcType=BIGINT}, #{note,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdz.db.model.UserAssetFlow" >
+    insert into t_user_asset_flow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="flowStatus != null" >
+        flow_status,
+      </if>
+      <if test="flowAmt != null" >
+        flow_amt,
+      </if>
+      <if test="relationId != null" >
+        relation_id,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="occureTime != null" >
+        occure_time,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=INTEGER},
+      </if>
+      <if test="flowStatus != null" >
+        #{flowStatus,jdbcType=TINYINT},
+      </if>
+      <if test="flowAmt != null" >
+        #{flowAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="relationId != null" >
+        #{relationId,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="occureTime != null" >
+        #{occureTime,jdbcType=BIGINT},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdz.db.model.UserAssetFlow" >
+    update t_user_asset_flow
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=INTEGER},
+      </if>
+      <if test="flowStatus != null" >
+        flow_status = #{flowStatus,jdbcType=TINYINT},
+      </if>
+      <if test="flowAmt != null" >
+        flow_amt = #{flowAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="relationId != null" >
+        relation_id = #{relationId,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="occureTime != null" >
+        occure_time = #{occureTime,jdbcType=BIGINT},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdz.db.model.UserAssetFlow" >
+    update t_user_asset_flow
+    set user_id = #{userId,jdbcType=INTEGER},
+      currency = #{currency,jdbcType=INTEGER},
+      flow_status = #{flowStatus,jdbcType=TINYINT},
+      flow_amt = #{flowAmt,jdbcType=DECIMAL},
+      relation_id = #{relationId,jdbcType=BIGINT},
+      version = #{version,jdbcType=INTEGER},
+      occure_time = #{occureTime,jdbcType=BIGINT},
+      note = #{note,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
