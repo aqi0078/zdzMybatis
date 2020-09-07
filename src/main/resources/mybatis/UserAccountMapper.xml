@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdz.db.dao.UserAccountMapper">
+  <resultMap id="BaseResultMap" type="com.zdz.db.model.UserAccount">
+    <id column="f_id" jdbcType="BIGINT" property="fId" />
+    <result column="f_user_id" jdbcType="BIGINT" property="fUserId" />
+    <result column="f_currency_id" jdbcType="BIGINT" property="fCurrencyId" />
+    <result column="f_balance"  jdbcType="DECIMAL" property="fBalance" />
+    <result column="f_cross_total_margin" jdbcType="DECIMAL" property="fCrossTotalMargin" />
+    <result column="f_isolated_total_margin" jdbcType="DECIMAL" property="fIsolatedTotalMargin" />
+    <result column="f_close_profit_loss" jdbcType="DECIMAL" property="fCloseProfitLoss" />
+    <result column="f_account_status" jdbcType="TINYINT" property="fAccountStatus" />
+    <result column="f_version" jdbcType="INTEGER" property="fVersion" />
+    <result column="f_update_time" jdbcType="TIMESTAMP" property="fUpdateTime" />
+    <result column="f_create_time" jdbcType="TIMESTAMP" property="fCreateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    f_id, f_user_id, f_currency_id, f_balance, f_cross_total_margin, f_isolated_total_margin, 
+    f_close_profit_loss, f_account_status, f_version, f_update_time, f_create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_account
+    where f_id = #{fId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_user_account
+    where f_id = #{fId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zdz.db.model.UserAccount">
+    insert into t_user_account (f_id, f_user_id, f_currency_id, 
+      f_balance, f_cross_total_margin, f_isolated_total_margin, 
+      f_close_profit_loss, f_account_status, f_version, 
+      f_update_time, f_create_time)
+    values (#{fId,jdbcType=BIGINT}, #{fUserId,jdbcType=BIGINT}, #{fCurrencyId,jdbcType=BIGINT}, 
+      #{fBalance,jdbcType=DECIMAL}, #{fCrossTotalMargin,jdbcType=DECIMAL}, #{fIsolatedTotalMargin,jdbcType=DECIMAL}, 
+      #{fCloseProfitLoss,jdbcType=DECIMAL}, #{fAccountStatus,jdbcType=TINYINT}, #{fVersion,jdbcType=INTEGER}, 
+      #{fUpdateTime,jdbcType=TIMESTAMP}, #{fCreateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdz.db.model.UserAccount">
+    insert into t_user_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fId != null">
+        f_id,
+      </if>
+      <if test="fUserId != null">
+        f_user_id,
+      </if>
+      <if test="fCurrencyId != null">
+        f_currency_id,
+      </if>
+      <if test="fBalance != null">
+        f_balance,
+      </if>
+      <if test="fCrossTotalMargin != null">
+        f_cross_total_margin,
+      </if>
+      <if test="fIsolatedTotalMargin != null">
+        f_isolated_total_margin,
+      </if>
+      <if test="fCloseProfitLoss != null">
+        f_close_profit_loss,
+      </if>
+      <if test="fAccountStatus != null">
+        f_account_status,
+      </if>
+      <if test="fVersion != null">
+        f_version,
+      </if>
+      <if test="fUpdateTime != null">
+        f_update_time,
+      </if>
+      <if test="fCreateTime != null">
+        f_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fId != null">
+        #{fId,jdbcType=BIGINT},
+      </if>
+      <if test="fUserId != null">
+        #{fUserId,jdbcType=BIGINT},
+      </if>
+      <if test="fCurrencyId != null">
+        #{fCurrencyId,jdbcType=BIGINT},
+      </if>
+      <if test="fBalance != null">
+        #{fBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="fCrossTotalMargin != null">
+        #{fCrossTotalMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="fIsolatedTotalMargin != null">
+        #{fIsolatedTotalMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="fCloseProfitLoss != null">
+        #{fCloseProfitLoss,jdbcType=DECIMAL},
+      </if>
+      <if test="fAccountStatus != null">
+        #{fAccountStatus,jdbcType=TINYINT},
+      </if>
+      <if test="fVersion != null">
+        #{fVersion,jdbcType=INTEGER},
+      </if>
+      <if test="fUpdateTime != null">
+        #{fUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fCreateTime != null">
+        #{fCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdz.db.model.UserAccount">
+    update t_user_account
+    <set>
+      <if test="fUserId != null">
+        f_user_id = #{fUserId,jdbcType=BIGINT},
+      </if>
+      <if test="fCurrencyId != null">
+        f_currency_id = #{fCurrencyId,jdbcType=BIGINT},
+      </if>
+      <if test="fBalance != null">
+        f_balance = #{fBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="fCrossTotalMargin != null">
+        f_cross_total_margin = #{fCrossTotalMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="fIsolatedTotalMargin != null">
+        f_isolated_total_margin = #{fIsolatedTotalMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="fCloseProfitLoss != null">
+        f_close_profit_loss = #{fCloseProfitLoss,jdbcType=DECIMAL},
+      </if>
+      <if test="fAccountStatus != null">
+        f_account_status = #{fAccountStatus,jdbcType=TINYINT},
+      </if>
+      <if test="fVersion != null">
+        f_version = #{fVersion,jdbcType=INTEGER},
+      </if>
+      <if test="fUpdateTime != null">
+        f_update_time = #{fUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fCreateTime != null">
+        f_create_time = #{fCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdz.db.model.UserAccount">
+    update t_user_account
+    set f_user_id = #{fUserId,jdbcType=BIGINT},
+      f_currency_id = #{fCurrencyId,jdbcType=BIGINT},
+      f_balance = #{fBalance,jdbcType=DECIMAL},
+      f_cross_total_margin = #{fCrossTotalMargin,jdbcType=DECIMAL},
+      f_isolated_total_margin = #{fIsolatedTotalMargin,jdbcType=DECIMAL},
+      f_close_profit_loss = #{fCloseProfitLoss,jdbcType=DECIMAL},
+      f_account_status = #{fAccountStatus,jdbcType=TINYINT},
+      f_version = #{fVersion,jdbcType=INTEGER},
+      f_update_time = #{fUpdateTime,jdbcType=TIMESTAMP},
+      f_create_time = #{fCreateTime,jdbcType=TIMESTAMP}
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zdz.db.model.UserAccount">
+    <id column="f_id" jdbcType="BIGINT" property="fId" />
+    <result column="f_user_id" jdbcType="BIGINT" property="fUserId" />
+    <result column="f_currency" jdbcType="BIGINT" property="fCurrency" />
+    <result column="f_balance" jdbcType="DECIMAL" property="fBalance" />
+    <result column="f_cross_total_margin" jdbcType="DECIMAL" property="fCrossTotalMargin" />
+    <result column="f_isolated_total_margin" jdbcType="DECIMAL" property="fIsolatedTotalMargin" />
+    <result column="f_close_profit_loss" jdbcType="DECIMAL" property="fCloseProfitLoss" />
+    <result column="f_account_status" jdbcType="TINYINT" property="fAccountStatus" />
+    <result column="f_version" jdbcType="INTEGER" property="fVersion" />
+    <result column="f_update_time" jdbcType="TIMESTAMP" property="fUpdateTime" />
+    <result column="f_create_time" jdbcType="TIMESTAMP" property="fCreateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    f_id, f_user_id, f_currency, f_balance, f_cross_total_margin, f_isolated_total_margin, 
+    f_close_profit_loss, f_account_status, f_version, f_update_time, f_create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_account
+    where f_id = #{fId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_user_account
+    where f_id = #{fId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zdz.db.model.UserAccount">
+    insert into t_user_account (f_id, f_user_id, f_currency, 
+      f_balance, f_cross_total_margin, f_isolated_total_margin, 
+      f_close_profit_loss, f_account_status, f_version, 
+      f_update_time, f_create_time)
+    values (#{fId,jdbcType=BIGINT}, #{fUserId,jdbcType=BIGINT}, #{fCurrency,jdbcType=BIGINT}, 
+      #{fBalance,jdbcType=DECIMAL}, #{fCrossTotalMargin,jdbcType=DECIMAL}, #{fIsolatedTotalMargin,jdbcType=DECIMAL}, 
+      #{fCloseProfitLoss,jdbcType=DECIMAL}, #{fAccountStatus,jdbcType=TINYINT}, #{fVersion,jdbcType=INTEGER}, 
+      #{fUpdateTime,jdbcType=TIMESTAMP}, #{fCreateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdz.db.model.UserAccount">
+    insert into t_user_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fId != null">
+        f_id,
+      </if>
+      <if test="fUserId != null">
+        f_user_id,
+      </if>
+      <if test="fCurrency != null">
+        f_currency,
+      </if>
+      <if test="fBalance != null">
+        f_balance,
+      </if>
+      <if test="fCrossTotalMargin != null">
+        f_cross_total_margin,
+      </if>
+      <if test="fIsolatedTotalMargin != null">
+        f_isolated_total_margin,
+      </if>
+      <if test="fCloseProfitLoss != null">
+        f_close_profit_loss,
+      </if>
+      <if test="fAccountStatus != null">
+        f_account_status,
+      </if>
+      <if test="fVersion != null">
+        f_version,
+      </if>
+      <if test="fUpdateTime != null">
+        f_update_time,
+      </if>
+      <if test="fCreateTime != null">
+        f_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fId != null">
+        #{fId,jdbcType=BIGINT},
+      </if>
+      <if test="fUserId != null">
+        #{fUserId,jdbcType=BIGINT},
+      </if>
+      <if test="fCurrency != null">
+        #{fCurrency,jdbcType=BIGINT},
+      </if>
+      <if test="fBalance != null">
+        #{fBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="fCrossTotalMargin != null">
+        #{fCrossTotalMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="fIsolatedTotalMargin != null">
+        #{fIsolatedTotalMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="fCloseProfitLoss != null">
+        #{fCloseProfitLoss,jdbcType=DECIMAL},
+      </if>
+      <if test="fAccountStatus != null">
+        #{fAccountStatus,jdbcType=TINYINT},
+      </if>
+      <if test="fVersion != null">
+        #{fVersion,jdbcType=INTEGER},
+      </if>
+      <if test="fUpdateTime != null">
+        #{fUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fCreateTime != null">
+        #{fCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdz.db.model.UserAccount">
+    update t_user_account
+    <set>
+      <if test="fUserId != null">
+        f_user_id = #{fUserId,jdbcType=BIGINT},
+      </if>
+      <if test="fCurrency != null">
+        f_currency = #{fCurrency,jdbcType=BIGINT},
+      </if>
+      <if test="fBalance != null">
+        f_balance = #{fBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="fCrossTotalMargin != null">
+        f_cross_total_margin = #{fCrossTotalMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="fIsolatedTotalMargin != null">
+        f_isolated_total_margin = #{fIsolatedTotalMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="fCloseProfitLoss != null">
+        f_close_profit_loss = #{fCloseProfitLoss,jdbcType=DECIMAL},
+      </if>
+      <if test="fAccountStatus != null">
+        f_account_status = #{fAccountStatus,jdbcType=TINYINT},
+      </if>
+      <if test="fVersion != null">
+        f_version = #{fVersion,jdbcType=INTEGER},
+      </if>
+      <if test="fUpdateTime != null">
+        f_update_time = #{fUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fCreateTime != null">
+        f_create_time = #{fCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdz.db.model.UserAccount">
+    update t_user_account
+    set f_user_id = #{fUserId,jdbcType=BIGINT},
+      f_currency = #{fCurrency,jdbcType=BIGINT},
+      f_balance = #{fBalance,jdbcType=DECIMAL},
+      f_cross_total_margin = #{fCrossTotalMargin,jdbcType=DECIMAL},
+      f_isolated_total_margin = #{fIsolatedTotalMargin,jdbcType=DECIMAL},
+      f_close_profit_loss = #{fCloseProfitLoss,jdbcType=DECIMAL},
+      f_account_status = #{fAccountStatus,jdbcType=TINYINT},
+      f_version = #{fVersion,jdbcType=INTEGER},
+      f_update_time = #{fUpdateTime,jdbcType=TIMESTAMP},
+      f_create_time = #{fCreateTime,jdbcType=TIMESTAMP}
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+</mapper>

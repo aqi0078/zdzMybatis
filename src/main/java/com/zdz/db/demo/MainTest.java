@@ -43,7 +43,12 @@ public class MainTest {
         return i;
     }
     public static void main(String[] args) {
-        System.out.println(getData());
+        Long account=1234567L;
+        Long account1=1002345678L;
+        System.out.println(account1%100000000);
+        System.out.println(account%100000000);
+        System.out.println(0xffffffff);
+//        System.out.println(getData());
 
 //        List list=null;
 //
