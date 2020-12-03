@@ -1,5 +1,7 @@
 package com.zdz.db.demo;
 
+import com.zdz.db.model.AccountInfo;
+
 /**
  * @Author: dezhi
  * @Description:
@@ -11,6 +13,8 @@ public class ThreadDemo implements Runnable {
         while (!Thread.currentThread().isInterrupted()){
             System.out.println(Thread.currentThread().getName()+"======thread=======");
         }
+        AccountInfo accountInfo =new AccountInfo();
+        
         System.out.println(Thread.currentThread().getName()+"===1111111===thread=======");
     }
 }

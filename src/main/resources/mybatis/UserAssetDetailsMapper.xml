@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zdz.db.dao.UserAssetDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.zdz.db.model.UserAssetDetails" >
+    <id column="f_id" property="fId" jdbcType="BIGINT" />
+    <result column="f_user_id" property="fUserId" jdbcType="BIGINT" />
+    <result column="f_account_id" property="fAccountId" jdbcType="BIGINT" />
+    <result column="f_account_type" property="fAccountType" jdbcType="TINYINT" />
+    <result column="f_amount" property="fAmount" jdbcType="DECIMAL" />
+    <result column="f_balance" property="fBalance" jdbcType="DECIMAL" />
+    <result column="f_currency_id" property="fCurrencyId" jdbcType="INTEGER" />
+    <result column="f_contract_id" property="fContractId" jdbcType="INTEGER" />
+    <result column="f_biz_id" property="fBizId" jdbcType="BIGINT" />
+    <result column="f_biz_type" property="fBizType" jdbcType="TINYINT" />
+    <result column="f_version" property="fVersion" jdbcType="BIGINT" />
+    <result column="f_biz_time" property="fBizTime" jdbcType="BIGINT" />
+    <result column="f_note" property="fNote" jdbcType="VARCHAR" />
+    <result column="f_create_time" property="fCreateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    f_id, f_user_id, f_account_id, f_account_type, f_amount, f_balance, f_currency_id, 
+    f_contract_id, f_biz_id, f_biz_type, f_version, f_biz_time, f_note, f_create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_asset_details
+    where f_id = #{fId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_user_asset_details
+    where f_id = #{fId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zdz.db.model.UserAssetDetails" >
+    insert into t_user_asset_details (f_id, f_user_id, f_account_id, 
+      f_account_type, f_amount, f_balance, 
+      f_currency_id, f_contract_id, f_biz_id, 
+      f_biz_type, f_version, f_biz_time, 
+      f_note, f_create_time)
+    values (#{fId,jdbcType=BIGINT}, #{fUserId,jdbcType=BIGINT}, #{fAccountId,jdbcType=BIGINT}, 
+      #{fAccountType,jdbcType=TINYINT}, #{fAmount,jdbcType=DECIMAL}, #{fBalance,jdbcType=DECIMAL}, 
+      #{fCurrencyId,jdbcType=INTEGER}, #{fContractId,jdbcType=INTEGER}, #{fBizId,jdbcType=BIGINT}, 
+      #{fBizType,jdbcType=TINYINT}, #{fVersion,jdbcType=BIGINT}, #{fBizTime,jdbcType=BIGINT}, 
+      #{fNote,jdbcType=VARCHAR}, #{fCreateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdz.db.model.UserAssetDetails" >
+    insert into t_user_asset_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fId != null" >
+        f_id,
+      </if>
+      <if test="fUserId != null" >
+        f_user_id,
+      </if>
+      <if test="fAccountId != null" >
+        f_account_id,
+      </if>
+      <if test="fAccountType != null" >
+        f_account_type,
+      </if>
+      <if test="fAmount != null" >
+        f_amount,
+      </if>
+      <if test="fBalance != null" >
+        f_balance,
+      </if>
+      <if test="fCurrencyId != null" >
+        f_currency_id,
+      </if>
+      <if test="fContractId != null" >
+        f_contract_id,
+      </if>
+      <if test="fBizId != null" >
+        f_biz_id,
+      </if>
+      <if test="fBizType != null" >
+        f_biz_type,
+      </if>
+      <if test="fVersion != null" >
+        f_version,
+      </if>
+      <if test="fBizTime != null" >
+        f_biz_time,
+      </if>
+      <if test="fNote != null" >
+        f_note,
+      </if>
+      <if test="fCreateTime != null" >
+        f_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fId != null" >
+        #{fId,jdbcType=BIGINT},
+      </if>
+      <if test="fUserId != null" >
+        #{fUserId,jdbcType=BIGINT},
+      </if>
+      <if test="fAccountId != null" >
+        #{fAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="fAccountType != null" >
+        #{fAccountType,jdbcType=TINYINT},
+      </if>
+      <if test="fAmount != null" >
+        #{fAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fBalance != null" >
+        #{fBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="fCurrencyId != null" >
+        #{fCurrencyId,jdbcType=INTEGER},
+      </if>
+      <if test="fContractId != null" >
+        #{fContractId,jdbcType=INTEGER},
+      </if>
+      <if test="fBizId != null" >
+        #{fBizId,jdbcType=BIGINT},
+      </if>
+      <if test="fBizType != null" >
+        #{fBizType,jdbcType=TINYINT},
+      </if>
+      <if test="fVersion != null" >
+        #{fVersion,jdbcType=BIGINT},
+      </if>
+      <if test="fBizTime != null" >
+        #{fBizTime,jdbcType=BIGINT},
+      </if>
+      <if test="fNote != null" >
+        #{fNote,jdbcType=VARCHAR},
+      </if>
+      <if test="fCreateTime != null" >
+        #{fCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdz.db.model.UserAssetDetails" >
+    update t_user_asset_details
+    <set >
+      <if test="fUserId != null" >
+        f_user_id = #{fUserId,jdbcType=BIGINT},
+      </if>
+      <if test="fAccountId != null" >
+        f_account_id = #{fAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="fAccountType != null" >
+        f_account_type = #{fAccountType,jdbcType=TINYINT},
+      </if>
+      <if test="fAmount != null" >
+        f_amount = #{fAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fBalance != null" >
+        f_balance = #{fBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="fCurrencyId != null" >
+        f_currency_id = #{fCurrencyId,jdbcType=INTEGER},
+      </if>
+      <if test="fContractId != null" >
+        f_contract_id = #{fContractId,jdbcType=INTEGER},
+      </if>
+      <if test="fBizId != null" >
+        f_biz_id = #{fBizId,jdbcType=BIGINT},
+      </if>
+      <if test="fBizType != null" >
+        f_biz_type = #{fBizType,jdbcType=TINYINT},
+      </if>
+      <if test="fVersion != null" >
+        f_version = #{fVersion,jdbcType=BIGINT},
+      </if>
+      <if test="fBizTime != null" >
+        f_biz_time = #{fBizTime,jdbcType=BIGINT},
+      </if>
+      <if test="fNote != null" >
+        f_note = #{fNote,jdbcType=VARCHAR},
+      </if>
+      <if test="fCreateTime != null" >
+        f_create_time = #{fCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdz.db.model.UserAssetDetails" >
+    update t_user_asset_details
+    set f_user_id = #{fUserId,jdbcType=BIGINT},
+      f_account_id = #{fAccountId,jdbcType=BIGINT},
+      f_account_type = #{fAccountType,jdbcType=TINYINT},
+      f_amount = #{fAmount,jdbcType=DECIMAL},
+      f_balance = #{fBalance,jdbcType=DECIMAL},
+      f_currency_id = #{fCurrencyId,jdbcType=INTEGER},
+      f_contract_id = #{fContractId,jdbcType=INTEGER},
+      f_biz_id = #{fBizId,jdbcType=BIGINT},
+      f_biz_type = #{fBizType,jdbcType=TINYINT},
+      f_version = #{fVersion,jdbcType=BIGINT},
+      f_biz_time = #{fBizTime,jdbcType=BIGINT},
+      f_note = #{fNote,jdbcType=VARCHAR},
+      f_create_time = #{fCreateTime,jdbcType=TIMESTAMP}
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+</mapper>

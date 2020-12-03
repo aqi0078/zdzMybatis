@@ -14,7 +14,9 @@
         </commentGenerator>
         <!--数据库链接地址账号密码-->
 <!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://59.110.141.146:3306/zdzTest" userId="root" password="zhang">-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://10.254.2.95:3306/fullcoin_sync_db" userId="wbf_user" password="6ZxQ04CqhD63pRy5SlCy">
+       <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://10.228.3.20:3306/fullcoin_sync_db" userId="wbf_user" password="6ZxQ04CqhD63pRy5SlCy">
+<!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://10.228.3.20:3306/sync_db" userId="wbf_user" password="6ZxQ04CqhD63pRy5SlCy">-->
+
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -33,7 +35,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!--生成对应表及类名-->
-        <table tableName="t_user_asset_transaction" domainObjectName="UserAssetTransaction" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> </table>
+        <table tableName="t_account_summary" domainObjectName="AccountSummary" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> </table>
 <!--        <table tableName="user_password" domainObjectName="UserPasswordDO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> </table>-->
     </context>
 </generatorConfiguration>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zdz.db.dao.CBAccountTransactionMapper" >
+  <resultMap id="BaseResultMap" type="com.zdz.db.model.CBAccountTransaction" >
+    <id column="f_id" property="fId" jdbcType="BIGINT" />
+    <result column="f_user_id" property="fUserId" jdbcType="BIGINT" />
+    <result column="f_account_id" property="fAccountId" jdbcType="BIGINT" />
+    <result column="f_amount" property="fAmount" jdbcType="DECIMAL" />
+    <result column="f_balance" property="fBalance" jdbcType="DECIMAL" />
+    <result column="f_currency_id" property="fCurrencyId" jdbcType="INTEGER" />
+    <result column="f_biz_type" property="fBizType" jdbcType="TINYINT" />
+    <result column="f_seq" property="fSeq" jdbcType="BIGINT" />
+    <result column="f_ts" property="fTs" jdbcType="BIGINT" />
+    <result column="f_offset" property="fOffset" jdbcType="BIGINT" />
+    <result column="f_create_time" property="fCreateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    f_id, f_user_id, f_account_id, f_amount, f_balance, f_currency_id, f_biz_type, f_seq, 
+    f_ts, f_offset, f_create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_cb_account_transaction
+    where f_id = #{fId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_cb_account_transaction
+    where f_id = #{fId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zdz.db.model.CBAccountTransaction" >
+    insert into t_cb_account_transaction (f_id, f_user_id, f_account_id, 
+      f_amount, f_balance, f_currency_id, 
+      f_biz_type, f_seq, f_ts, 
+      f_offset, f_create_time)
+    values (#{fId,jdbcType=BIGINT}, #{fUserId,jdbcType=BIGINT}, #{fAccountId,jdbcType=BIGINT}, 
+      #{fAmount,jdbcType=DECIMAL}, #{fBalance,jdbcType=DECIMAL}, #{fCurrencyId,jdbcType=INTEGER}, 
+      #{fBizType,jdbcType=TINYINT}, #{fSeq,jdbcType=BIGINT}, #{fTs,jdbcType=BIGINT}, 
+      #{fOffset,jdbcType=BIGINT}, #{fCreateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdz.db.model.CBAccountTransaction" >
+    insert into t_cb_account_transaction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fId != null" >
+        f_id,
+      </if>
+      <if test="fUserId != null" >
+        f_user_id,
+      </if>
+      <if test="fAccountId != null" >
+        f_account_id,
+      </if>
+      <if test="fAmount != null" >
+        f_amount,
+      </if>
+      <if test="fBalance != null" >
+        f_balance,
+      </if>
+      <if test="fCurrencyId != null" >
+        f_currency_id,
+      </if>
+      <if test="fBizType != null" >
+        f_biz_type,
+      </if>
+      <if test="fSeq != null" >
+        f_seq,
+      </if>
+      <if test="fTs != null" >
+        f_ts,
+      </if>
+      <if test="fOffset != null" >
+        f_offset,
+      </if>
+      <if test="fCreateTime != null" >
+        f_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fId != null" >
+        #{fId,jdbcType=BIGINT},
+      </if>
+      <if test="fUserId != null" >
+        #{fUserId,jdbcType=BIGINT},
+      </if>
+      <if test="fAccountId != null" >
+        #{fAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="fAmount != null" >
+        #{fAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fBalance != null" >
+        #{fBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="fCurrencyId != null" >
+        #{fCurrencyId,jdbcType=INTEGER},
+      </if>
+      <if test="fBizType != null" >
+        #{fBizType,jdbcType=TINYINT},
+      </if>
+      <if test="fSeq != null" >
+        #{fSeq,jdbcType=BIGINT},
+      </if>
+      <if test="fTs != null" >
+        #{fTs,jdbcType=BIGINT},
+      </if>
+      <if test="fOffset != null" >
+        #{fOffset,jdbcType=BIGINT},
+      </if>
+      <if test="fCreateTime != null" >
+        #{fCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdz.db.model.CBAccountTransaction" >
+    update t_cb_account_transaction
+    <set >
+      <if test="fUserId != null" >
+        f_user_id = #{fUserId,jdbcType=BIGINT},
+      </if>
+      <if test="fAccountId != null" >
+        f_account_id = #{fAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="fAmount != null" >
+        f_amount = #{fAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fBalance != null" >
+        f_balance = #{fBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="fCurrencyId != null" >
+        f_currency_id = #{fCurrencyId,jdbcType=INTEGER},
+      </if>
+      <if test="fBizType != null" >
+        f_biz_type = #{fBizType,jdbcType=TINYINT},
+      </if>
+      <if test="fSeq != null" >
+        f_seq = #{fSeq,jdbcType=BIGINT},
+      </if>
+      <if test="fTs != null" >
+        f_ts = #{fTs,jdbcType=BIGINT},
+      </if>
+      <if test="fOffset != null" >
+        f_offset = #{fOffset,jdbcType=BIGINT},
+      </if>
+      <if test="fCreateTime != null" >
+        f_create_time = #{fCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdz.db.model.CBAccountTransaction" >
+    update t_cb_account_transaction
+    set f_user_id = #{fUserId,jdbcType=BIGINT},
+      f_account_id = #{fAccountId,jdbcType=BIGINT},
+      f_amount = #{fAmount,jdbcType=DECIMAL},
+      f_balance = #{fBalance,jdbcType=DECIMAL},
+      f_currency_id = #{fCurrencyId,jdbcType=INTEGER},
+      f_biz_type = #{fBizType,jdbcType=TINYINT},
+      f_seq = #{fSeq,jdbcType=BIGINT},
+      f_ts = #{fTs,jdbcType=BIGINT},
+      f_offset = #{fOffset,jdbcType=BIGINT},
+      f_create_time = #{fCreateTime,jdbcType=TIMESTAMP}
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+</mapper>

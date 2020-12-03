@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zdz.db.dao.AccountSummaryMapper" >
+  <resultMap id="BaseResultMap" type="com.zdz.db.model.AccountSummary" >
+    <id column="f_id" property="fId" jdbcType="BIGINT" />
+    <result column="f_currency_id" property="fCurrencyId" jdbcType="BIGINT" />
+    <result column="f_currency_name" property="fCurrencyName" jdbcType="VARCHAR" />
+    <result column="f_type" property="fType" jdbcType="VARCHAR" />
+    <result column="f_count" property="fCount" jdbcType="DECIMAL" />
+    <result column="f_check_data" property="fCheckData" jdbcType="TIMESTAMP" />
+    <result column="f_create_time" property="fCreateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    f_id, f_currency_id, f_currency_name, f_type, f_count, f_check_data, f_create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_account_summary
+    where f_id = #{fId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_account_summary
+    where f_id = #{fId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zdz.db.model.AccountSummary" >
+    insert into t_account_summary (f_id, f_currency_id, f_currency_name, 
+      f_type, f_count, f_check_data, 
+      f_create_time)
+    values (#{fId,jdbcType=BIGINT}, #{fCurrencyId,jdbcType=BIGINT}, #{fCurrencyName,jdbcType=VARCHAR}, 
+      #{fType,jdbcType=VARCHAR}, #{fCount,jdbcType=DECIMAL}, #{fCheckData,jdbcType=TIMESTAMP}, 
+      #{fCreateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdz.db.model.AccountSummary" >
+    insert into t_account_summary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fId != null" >
+        f_id,
+      </if>
+      <if test="fCurrencyId != null" >
+        f_currency_id,
+      </if>
+      <if test="fCurrencyName != null" >
+        f_currency_name,
+      </if>
+      <if test="fType != null" >
+        f_type,
+      </if>
+      <if test="fCount != null" >
+        f_count,
+      </if>
+      <if test="fCheckData != null" >
+        f_check_data,
+      </if>
+      <if test="fCreateTime != null" >
+        f_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fId != null" >
+        #{fId,jdbcType=BIGINT},
+      </if>
+      <if test="fCurrencyId != null" >
+        #{fCurrencyId,jdbcType=BIGINT},
+      </if>
+      <if test="fCurrencyName != null" >
+        #{fCurrencyName,jdbcType=VARCHAR},
+      </if>
+      <if test="fType != null" >
+        #{fType,jdbcType=VARCHAR},
+      </if>
+      <if test="fCount != null" >
+        #{fCount,jdbcType=DECIMAL},
+      </if>
+      <if test="fCheckData != null" >
+        #{fCheckData,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fCreateTime != null" >
+        #{fCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdz.db.model.AccountSummary" >
+    update t_account_summary
+    <set >
+      <if test="fCurrencyId != null" >
+        f_currency_id = #{fCurrencyId,jdbcType=BIGINT},
+      </if>
+      <if test="fCurrencyName != null" >
+        f_currency_name = #{fCurrencyName,jdbcType=VARCHAR},
+      </if>
+      <if test="fType != null" >
+        f_type = #{fType,jdbcType=VARCHAR},
+      </if>
+      <if test="fCount != null" >
+        f_count = #{fCount,jdbcType=DECIMAL},
+      </if>
+      <if test="fCheckData != null" >
+        f_check_data = #{fCheckData,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fCreateTime != null" >
+        f_create_time = #{fCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdz.db.model.AccountSummary" >
+    update t_account_summary
+    set f_currency_id = #{fCurrencyId,jdbcType=BIGINT},
+      f_currency_name = #{fCurrencyName,jdbcType=VARCHAR},
+      f_type = #{fType,jdbcType=VARCHAR},
+      f_count = #{fCount,jdbcType=DECIMAL},
+      f_check_data = #{fCheckData,jdbcType=TIMESTAMP},
+      f_create_time = #{fCreateTime,jdbcType=TIMESTAMP}
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zdz.db.dao.TradingOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.zdz.db.model.TradingOrder" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="client_order_id" property="clientOrderId" jdbcType="BIGINT" />
+    <result column="account_id" property="accountId" jdbcType="BIGINT" />
+    <result column="instrument_id" property="instrumentId" jdbcType="INTEGER" />
+    <result column="base_currency_id" property="baseCurrencyId" jdbcType="INTEGER" />
+    <result column="quote_currency_id" property="quoteCurrencyId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="time_in_force" property="timeInForce" jdbcType="INTEGER" />
+    <result column="timestamp" property="timestamp" jdbcType="BIGINT" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="side" property="side" jdbcType="INTEGER" />
+    <result column="order_price" property="orderPrice" jdbcType="DECIMAL" />
+    <result column="order_qty" property="orderQty" jdbcType="DECIMAL" />
+    <result column="order_amt" property="orderAmt" jdbcType="DECIMAL" />
+    <result column="exec_amt" property="execAmt" jdbcType="DECIMAL" />
+    <result column="exec_qty" property="execQty" jdbcType="DECIMAL" />
+    <result column="remaining_qty" property="remainingQty" jdbcType="DECIMAL" />
+    <result column="update_time" property="updateTime" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, client_order_id, account_id, instrument_id, base_currency_id, quote_currency_id, 
+    type, time_in_force, timestamp, state, side, order_price, order_qty, order_amt, exec_amt, 
+    exec_qty, remaining_qty, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from trading_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from trading_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zdz.db.model.TradingOrder" >
+    insert into trading_order (id, client_order_id, account_id, 
+      instrument_id, base_currency_id, quote_currency_id, 
+      type, time_in_force, timestamp, 
+      state, side, order_price, 
+      order_qty, order_amt, exec_amt, 
+      exec_qty, remaining_qty, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{clientOrderId,jdbcType=BIGINT}, #{accountId,jdbcType=BIGINT}, 
+      #{instrumentId,jdbcType=INTEGER}, #{baseCurrencyId,jdbcType=INTEGER}, #{quoteCurrencyId,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{timeInForce,jdbcType=INTEGER}, #{timestamp,jdbcType=BIGINT}, 
+      #{state,jdbcType=INTEGER}, #{side,jdbcType=INTEGER}, #{orderPrice,jdbcType=DECIMAL}, 
+      #{orderQty,jdbcType=DECIMAL}, #{orderAmt,jdbcType=DECIMAL}, #{execAmt,jdbcType=DECIMAL}, 
+      #{execQty,jdbcType=DECIMAL}, #{remainingQty,jdbcType=DECIMAL}, #{updateTime,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdz.db.model.TradingOrder" >
+    insert into trading_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="clientOrderId != null" >
+        client_order_id,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="instrumentId != null" >
+        instrument_id,
+      </if>
+      <if test="baseCurrencyId != null" >
+        base_currency_id,
+      </if>
+      <if test="quoteCurrencyId != null" >
+        quote_currency_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="timeInForce != null" >
+        time_in_force,
+      </if>
+      <if test="timestamp != null" >
+        timestamp,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="side != null" >
+        side,
+      </if>
+      <if test="orderPrice != null" >
+        order_price,
+      </if>
+      <if test="orderQty != null" >
+        order_qty,
+      </if>
+      <if test="orderAmt != null" >
+        order_amt,
+      </if>
+      <if test="execAmt != null" >
+        exec_amt,
+      </if>
+      <if test="execQty != null" >
+        exec_qty,
+      </if>
+      <if test="remainingQty != null" >
+        remaining_qty,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="clientOrderId != null" >
+        #{clientOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="instrumentId != null" >
+        #{instrumentId,jdbcType=INTEGER},
+      </if>
+      <if test="baseCurrencyId != null" >
+        #{baseCurrencyId,jdbcType=INTEGER},
+      </if>
+      <if test="quoteCurrencyId != null" >
+        #{quoteCurrencyId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="timeInForce != null" >
+        #{timeInForce,jdbcType=INTEGER},
+      </if>
+      <if test="timestamp != null" >
+        #{timestamp,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="side != null" >
+        #{side,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        #{orderPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderQty != null" >
+        #{orderQty,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAmt != null" >
+        #{orderAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="execAmt != null" >
+        #{execAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="execQty != null" >
+        #{execQty,jdbcType=DECIMAL},
+      </if>
+      <if test="remainingQty != null" >
+        #{remainingQty,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdz.db.model.TradingOrder" >
+    update trading_order
+    <set >
+      <if test="clientOrderId != null" >
+        client_order_id = #{clientOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="instrumentId != null" >
+        instrument_id = #{instrumentId,jdbcType=INTEGER},
+      </if>
+      <if test="baseCurrencyId != null" >
+        base_currency_id = #{baseCurrencyId,jdbcType=INTEGER},
+      </if>
+      <if test="quoteCurrencyId != null" >
+        quote_currency_id = #{quoteCurrencyId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="timeInForce != null" >
+        time_in_force = #{timeInForce,jdbcType=INTEGER},
+      </if>
+      <if test="timestamp != null" >
+        timestamp = #{timestamp,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="side != null" >
+        side = #{side,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        order_price = #{orderPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderQty != null" >
+        order_qty = #{orderQty,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAmt != null" >
+        order_amt = #{orderAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="execAmt != null" >
+        exec_amt = #{execAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="execQty != null" >
+        exec_qty = #{execQty,jdbcType=DECIMAL},
+      </if>
+      <if test="remainingQty != null" >
+        remaining_qty = #{remainingQty,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdz.db.model.TradingOrder" >
+    update trading_order
+    set client_order_id = #{clientOrderId,jdbcType=BIGINT},
+      account_id = #{accountId,jdbcType=BIGINT},
+      instrument_id = #{instrumentId,jdbcType=INTEGER},
+      base_currency_id = #{baseCurrencyId,jdbcType=INTEGER},
+      quote_currency_id = #{quoteCurrencyId,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      time_in_force = #{timeInForce,jdbcType=INTEGER},
+      timestamp = #{timestamp,jdbcType=BIGINT},
+      state = #{state,jdbcType=INTEGER},
+      side = #{side,jdbcType=INTEGER},
+      order_price = #{orderPrice,jdbcType=DECIMAL},
+      order_qty = #{orderQty,jdbcType=DECIMAL},
+      order_amt = #{orderAmt,jdbcType=DECIMAL},
+      exec_amt = #{execAmt,jdbcType=DECIMAL},
+      exec_qty = #{execQty,jdbcType=DECIMAL},
+      remaining_qty = #{remainingQty,jdbcType=DECIMAL},
+      update_time = #{updateTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

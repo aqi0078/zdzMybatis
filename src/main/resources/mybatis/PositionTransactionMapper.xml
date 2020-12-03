@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdz.db.dao.PositionTransactionMapper">
+  <resultMap id="BaseResultMap" type="com.zdz.db.model.PositionTransaction">
+    <id column="f_id" jdbcType="BIGINT" property="fId" />
+    <result column="f_account_id" jdbcType="BIGINT" property="fAccountId" />
+    <result column="f_contract_id" jdbcType="INTEGER" property="fContractId" />
+    <result column="f_finance_code" jdbcType="VARCHAR" property="fFinanceCode" />
+    <result column="f_type" jdbcType="TINYINT" property="fType" />
+    <result column="f_occurrence_value" jdbcType="DECIMAL" property="fOccurrenceValue" />
+    <result column="f_final_value" jdbcType="DECIMAL" property="fFinalValue" />
+    <result column="f_action_id" jdbcType="BIGINT" property="fActionId" />
+    <result column="f_match_time" jdbcType="BIGINT" property="fMatchTime" />
+    <result column="f_offset" jdbcType="BIGINT" property="fOffset" />
+    <result column="f_seq" jdbcType="BIGINT" property="fSeq" />
+    <result column="f_create_time" jdbcType="TIMESTAMP" property="fCreateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    f_id, f_account_id, f_contract_id, f_finance_code, f_type, f_occurrence_value, f_final_value, 
+    f_action_id, f_match_time, f_offset, f_seq, f_create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_position_transaction
+    where f_id = #{fId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_position_transaction
+    where f_id = #{fId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zdz.db.model.PositionTransaction">
+    insert into t_position_transaction (f_id, f_account_id, f_contract_id, 
+      f_finance_code, f_type, f_occurrence_value, 
+      f_final_value, f_action_id, f_match_time, 
+      f_offset, f_seq, f_create_time
+      )
+    values (#{fId,jdbcType=BIGINT}, #{fAccountId,jdbcType=BIGINT}, #{fContractId,jdbcType=INTEGER}, 
+      #{fFinanceCode,jdbcType=VARCHAR}, #{fType,jdbcType=TINYINT}, #{fOccurrenceValue,jdbcType=DECIMAL}, 
+      #{fFinalValue,jdbcType=DECIMAL}, #{fActionId,jdbcType=BIGINT}, #{fMatchTime,jdbcType=BIGINT}, 
+      #{fOffset,jdbcType=BIGINT}, #{fSeq,jdbcType=BIGINT}, #{fCreateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdz.db.model.PositionTransaction">
+    insert into t_position_transaction
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fId != null">
+        f_id,
+      </if>
+      <if test="fAccountId != null">
+        f_account_id,
+      </if>
+      <if test="fContractId != null">
+        f_contract_id,
+      </if>
+      <if test="fFinanceCode != null">
+        f_finance_code,
+      </if>
+      <if test="fType != null">
+        f_type,
+      </if>
+      <if test="fOccurrenceValue != null">
+        f_occurrence_value,
+      </if>
+      <if test="fFinalValue != null">
+        f_final_value,
+      </if>
+      <if test="fActionId != null">
+        f_action_id,
+      </if>
+      <if test="fMatchTime != null">
+        f_match_time,
+      </if>
+      <if test="fOffset != null">
+        f_offset,
+      </if>
+      <if test="fSeq != null">
+        f_seq,
+      </if>
+      <if test="fCreateTime != null">
+        f_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fId != null">
+        #{fId,jdbcType=BIGINT},
+      </if>
+      <if test="fAccountId != null">
+        #{fAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="fContractId != null">
+        #{fContractId,jdbcType=INTEGER},
+      </if>
+      <if test="fFinanceCode != null">
+        #{fFinanceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fType != null">
+        #{fType,jdbcType=TINYINT},
+      </if>
+      <if test="fOccurrenceValue != null">
+        #{fOccurrenceValue,jdbcType=DECIMAL},
+      </if>
+      <if test="fFinalValue != null">
+        #{fFinalValue,jdbcType=DECIMAL},
+      </if>
+      <if test="fActionId != null">
+        #{fActionId,jdbcType=BIGINT},
+      </if>
+      <if test="fMatchTime != null">
+        #{fMatchTime,jdbcType=BIGINT},
+      </if>
+      <if test="fOffset != null">
+        #{fOffset,jdbcType=BIGINT},
+      </if>
+      <if test="fSeq != null">
+        #{fSeq,jdbcType=BIGINT},
+      </if>
+      <if test="fCreateTime != null">
+        #{fCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdz.db.model.PositionTransaction">
+    update t_position_transaction
+    <set>
+      <if test="fAccountId != null">
+        f_account_id = #{fAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="fContractId != null">
+        f_contract_id = #{fContractId,jdbcType=INTEGER},
+      </if>
+      <if test="fFinanceCode != null">
+        f_finance_code = #{fFinanceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fType != null">
+        f_type = #{fType,jdbcType=TINYINT},
+      </if>
+      <if test="fOccurrenceValue != null">
+        f_occurrence_value = #{fOccurrenceValue,jdbcType=DECIMAL},
+      </if>
+      <if test="fFinalValue != null">
+        f_final_value = #{fFinalValue,jdbcType=DECIMAL},
+      </if>
+      <if test="fActionId != null">
+        f_action_id = #{fActionId,jdbcType=BIGINT},
+      </if>
+      <if test="fMatchTime != null">
+        f_match_time = #{fMatchTime,jdbcType=BIGINT},
+      </if>
+      <if test="fOffset != null">
+        f_offset = #{fOffset,jdbcType=BIGINT},
+      </if>
+      <if test="fSeq != null">
+        f_seq = #{fSeq,jdbcType=BIGINT},
+      </if>
+      <if test="fCreateTime != null">
+        f_create_time = #{fCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdz.db.model.PositionTransaction">
+    update t_position_transaction
+    set f_account_id = #{fAccountId,jdbcType=BIGINT},
+      f_contract_id = #{fContractId,jdbcType=INTEGER},
+      f_finance_code = #{fFinanceCode,jdbcType=VARCHAR},
+      f_type = #{fType,jdbcType=TINYINT},
+      f_occurrence_value = #{fOccurrenceValue,jdbcType=DECIMAL},
+      f_final_value = #{fFinalValue,jdbcType=DECIMAL},
+      f_action_id = #{fActionId,jdbcType=BIGINT},
+      f_match_time = #{fMatchTime,jdbcType=BIGINT},
+      f_offset = #{fOffset,jdbcType=BIGINT},
+      f_seq = #{fSeq,jdbcType=BIGINT},
+      f_create_time = #{fCreateTime,jdbcType=TIMESTAMP}
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zdz.db.model.PositionTransaction">
+    <id column="f_id" jdbcType="BIGINT" property="fId" />
+    <result column="f_account_id" jdbcType="BIGINT" property="fAccountId" />
+    <result column="f_contract_id" jdbcType="INTEGER" property="fContractId" />
+    <result column="f_type" jdbcType="TINYINT" property="fType" />
+    <result column="f_occurrence_value" jdbcType="DECIMAL" property="fOccurrenceValue" />
+    <result column="f_final_value" jdbcType="DECIMAL" property="fFinalValue" />
+    <result column="f_action_id" jdbcType="BIGINT" property="fActionId" />
+    <result column="f_match_time" jdbcType="BIGINT" property="fMatchTime" />
+    <result column="f_offset" jdbcType="BIGINT" property="fOffset" />
+    <result column="f_seq" jdbcType="BIGINT" property="fSeq" />
+    <result column="f_create_time" jdbcType="TIMESTAMP" property="fCreateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    f_id, f_account_id, f_contract_id, f_type, f_occurrence_value, f_final_value, f_action_id, 
+    f_match_time, f_offset, f_seq, f_create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_position_transaction
+    where f_id = #{fId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_position_transaction
+    where f_id = #{fId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zdz.db.model.PositionTransaction">
+    insert into t_position_transaction (f_id, f_account_id, f_contract_id, 
+      f_type, f_occurrence_value, f_final_value, 
+      f_action_id, f_match_time, f_offset, 
+      f_seq, f_create_time)
+    values (#{fId,jdbcType=BIGINT}, #{fAccountId,jdbcType=BIGINT}, #{fContractId,jdbcType=INTEGER}, 
+      #{fType,jdbcType=TINYINT}, #{fOccurrenceValue,jdbcType=DECIMAL}, #{fFinalValue,jdbcType=DECIMAL}, 
+      #{fActionId,jdbcType=BIGINT}, #{fMatchTime,jdbcType=BIGINT}, #{fOffset,jdbcType=BIGINT}, 
+      #{fSeq,jdbcType=BIGINT}, #{fCreateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdz.db.model.PositionTransaction">
+    insert into t_position_transaction
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fId != null">
+        f_id,
+      </if>
+      <if test="fAccountId != null">
+        f_account_id,
+      </if>
+      <if test="fContractId != null">
+        f_contract_id,
+      </if>
+      <if test="fType != null">
+        f_type,
+      </if>
+      <if test="fOccurrenceValue != null">
+        f_occurrence_value,
+      </if>
+      <if test="fFinalValue != null">
+        f_final_value,
+      </if>
+      <if test="fActionId != null">
+        f_action_id,
+      </if>
+      <if test="fMatchTime != null">
+        f_match_time,
+      </if>
+      <if test="fOffset != null">
+        f_offset,
+      </if>
+      <if test="fSeq != null">
+        f_seq,
+      </if>
+      <if test="fCreateTime != null">
+        f_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fId != null">
+        #{fId,jdbcType=BIGINT},
+      </if>
+      <if test="fAccountId != null">
+        #{fAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="fContractId != null">
+        #{fContractId,jdbcType=INTEGER},
+      </if>
+      <if test="fType != null">
+        #{fType,jdbcType=TINYINT},
+      </if>
+      <if test="fOccurrenceValue != null">
+        #{fOccurrenceValue,jdbcType=DECIMAL},
+      </if>
+      <if test="fFinalValue != null">
+        #{fFinalValue,jdbcType=DECIMAL},
+      </if>
+      <if test="fActionId != null">
+        #{fActionId,jdbcType=BIGINT},
+      </if>
+      <if test="fMatchTime != null">
+        #{fMatchTime,jdbcType=BIGINT},
+      </if>
+      <if test="fOffset != null">
+        #{fOffset,jdbcType=BIGINT},
+      </if>
+      <if test="fSeq != null">
+        #{fSeq,jdbcType=BIGINT},
+      </if>
+      <if test="fCreateTime != null">
+        #{fCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdz.db.model.PositionTransaction">
+    update t_position_transaction
+    <set>
+      <if test="fAccountId != null">
+        f_account_id = #{fAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="fContractId != null">
+        f_contract_id = #{fContractId,jdbcType=INTEGER},
+      </if>
+      <if test="fType != null">
+        f_type = #{fType,jdbcType=TINYINT},
+      </if>
+      <if test="fOccurrenceValue != null">
+        f_occurrence_value = #{fOccurrenceValue,jdbcType=DECIMAL},
+      </if>
+      <if test="fFinalValue != null">
+        f_final_value = #{fFinalValue,jdbcType=DECIMAL},
+      </if>
+      <if test="fActionId != null">
+        f_action_id = #{fActionId,jdbcType=BIGINT},
+      </if>
+      <if test="fMatchTime != null">
+        f_match_time = #{fMatchTime,jdbcType=BIGINT},
+      </if>
+      <if test="fOffset != null">
+        f_offset = #{fOffset,jdbcType=BIGINT},
+      </if>
+      <if test="fSeq != null">
+        f_seq = #{fSeq,jdbcType=BIGINT},
+      </if>
+      <if test="fCreateTime != null">
+        f_create_time = #{fCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdz.db.model.PositionTransaction">
+    update t_position_transaction
+    set f_account_id = #{fAccountId,jdbcType=BIGINT},
+      f_contract_id = #{fContractId,jdbcType=INTEGER},
+      f_type = #{fType,jdbcType=TINYINT},
+      f_occurrence_value = #{fOccurrenceValue,jdbcType=DECIMAL},
+      f_final_value = #{fFinalValue,jdbcType=DECIMAL},
+      f_action_id = #{fActionId,jdbcType=BIGINT},
+      f_match_time = #{fMatchTime,jdbcType=BIGINT},
+      f_offset = #{fOffset,jdbcType=BIGINT},
+      f_seq = #{fSeq,jdbcType=BIGINT},
+      f_create_time = #{fCreateTime,jdbcType=TIMESTAMP}
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+</mapper>

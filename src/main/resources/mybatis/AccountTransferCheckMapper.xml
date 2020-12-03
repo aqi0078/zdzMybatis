@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zdz.db.dao.AccountTransferCheckMapper" >
+  <resultMap id="BaseResultMap" type="com.zdz.db.model.AccountTransferCheck" >
+    <id column="f_id" property="fId" jdbcType="BIGINT" />
+    <result column="f_biz_type" property="fBizType" jdbcType="VARCHAR" />
+    <result column="f_biz_order_id" property="fBizOrderId" jdbcType="VARCHAR" />
+    <result column="f_account_id" property="fAccountId" jdbcType="BIGINT" />
+    <result column="f_transfer_type" property="fTransferType" jdbcType="VARCHAR" />
+    <result column="f_timestamp" property="fTimestamp" jdbcType="BIGINT" />
+    <result column="f_transfer_state" property="fTransferState" jdbcType="VARCHAR" />
+    <result column="f_seq" property="fSeq" jdbcType="BIGINT" />
+    <result column="f_ts" property="fTs" jdbcType="BIGINT" />
+    <result column="f_offset" property="fOffset" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    f_id, f_biz_type, f_biz_order_id, f_account_id, f_transfer_type, f_timestamp, f_transfer_state, 
+    f_seq, f_ts, f_offset
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_account_transfer_check
+    where f_id = #{fId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_account_transfer_check
+    where f_id = #{fId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zdz.db.model.AccountTransferCheck" >
+    insert into t_account_transfer_check (f_id, f_biz_type, f_biz_order_id, 
+      f_account_id, f_transfer_type, f_timestamp, 
+      f_transfer_state, f_seq, f_ts, 
+      f_offset)
+    values (#{fId,jdbcType=BIGINT}, #{fBizType,jdbcType=VARCHAR}, #{fBizOrderId,jdbcType=VARCHAR}, 
+      #{fAccountId,jdbcType=BIGINT}, #{fTransferType,jdbcType=VARCHAR}, #{fTimestamp,jdbcType=BIGINT}, 
+      #{fTransferState,jdbcType=VARCHAR}, #{fSeq,jdbcType=BIGINT}, #{fTs,jdbcType=BIGINT}, 
+      #{fOffset,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdz.db.model.AccountTransferCheck" >
+    insert into t_account_transfer_check
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fId != null" >
+        f_id,
+      </if>
+      <if test="fBizType != null" >
+        f_biz_type,
+      </if>
+      <if test="fBizOrderId != null" >
+        f_biz_order_id,
+      </if>
+      <if test="fAccountId != null" >
+        f_account_id,
+      </if>
+      <if test="fTransferType != null" >
+        f_transfer_type,
+      </if>
+      <if test="fTimestamp != null" >
+        f_timestamp,
+      </if>
+      <if test="fTransferState != null" >
+        f_transfer_state,
+      </if>
+      <if test="fSeq != null" >
+        f_seq,
+      </if>
+      <if test="fTs != null" >
+        f_ts,
+      </if>
+      <if test="fOffset != null" >
+        f_offset,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fId != null" >
+        #{fId,jdbcType=BIGINT},
+      </if>
+      <if test="fBizType != null" >
+        #{fBizType,jdbcType=VARCHAR},
+      </if>
+      <if test="fBizOrderId != null" >
+        #{fBizOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="fAccountId != null" >
+        #{fAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="fTransferType != null" >
+        #{fTransferType,jdbcType=VARCHAR},
+      </if>
+      <if test="fTimestamp != null" >
+        #{fTimestamp,jdbcType=BIGINT},
+      </if>
+      <if test="fTransferState != null" >
+        #{fTransferState,jdbcType=VARCHAR},
+      </if>
+      <if test="fSeq != null" >
+        #{fSeq,jdbcType=BIGINT},
+      </if>
+      <if test="fTs != null" >
+        #{fTs,jdbcType=BIGINT},
+      </if>
+      <if test="fOffset != null" >
+        #{fOffset,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdz.db.model.AccountTransferCheck" >
+    update t_account_transfer_check
+    <set >
+      <if test="fBizType != null" >
+        f_biz_type = #{fBizType,jdbcType=VARCHAR},
+      </if>
+      <if test="fBizOrderId != null" >
+        f_biz_order_id = #{fBizOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="fAccountId != null" >
+        f_account_id = #{fAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="fTransferType != null" >
+        f_transfer_type = #{fTransferType,jdbcType=VARCHAR},
+      </if>
+      <if test="fTimestamp != null" >
+        f_timestamp = #{fTimestamp,jdbcType=BIGINT},
+      </if>
+      <if test="fTransferState != null" >
+        f_transfer_state = #{fTransferState,jdbcType=VARCHAR},
+      </if>
+      <if test="fSeq != null" >
+        f_seq = #{fSeq,jdbcType=BIGINT},
+      </if>
+      <if test="fTs != null" >
+        f_ts = #{fTs,jdbcType=BIGINT},
+      </if>
+      <if test="fOffset != null" >
+        f_offset = #{fOffset,jdbcType=BIGINT},
+      </if>
+    </set>
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdz.db.model.AccountTransferCheck" >
+    update t_account_transfer_check
+    set f_biz_type = #{fBizType,jdbcType=VARCHAR},
+      f_biz_order_id = #{fBizOrderId,jdbcType=VARCHAR},
+      f_account_id = #{fAccountId,jdbcType=BIGINT},
+      f_transfer_type = #{fTransferType,jdbcType=VARCHAR},
+      f_timestamp = #{fTimestamp,jdbcType=BIGINT},
+      f_transfer_state = #{fTransferState,jdbcType=VARCHAR},
+      f_seq = #{fSeq,jdbcType=BIGINT},
+      f_ts = #{fTs,jdbcType=BIGINT},
+      f_offset = #{fOffset,jdbcType=BIGINT}
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+</mapper>

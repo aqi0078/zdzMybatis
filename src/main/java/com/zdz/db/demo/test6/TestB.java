@@ -9,10 +9,14 @@ import java.util.concurrent.*;
  * @Date: 2020/8/17
  */
 public class TestB {
+
     public TestB(){
         this.thread=add("999999");
     }
+
     public static Thread thread;
+
+    private static ExecutorService executor = Executors.newFixedThreadPool(2);
     public Thread add(String str){
         return new Thread(){
             @Override
@@ -64,11 +68,59 @@ public class TestB {
         return str;
     }
     public static void main(String[] args) throws Exception {
-        try {
-            asss("fgdhjfk");
-        }catch (KafkaConsumerAssignedException e){
+//        try {
+//            asss("fgdhjfk");
+//        }catch (KafkaConsumerAssignedException e){
+//
+////        }
+//        CompletableFuture<?> f = CompletableFuture.completedFuture(null);
+//        CompletableFuture<?> f1 = CompletableFuture.completedFuture(null);
+//
+//            f = CompletableFuture.runAsync(() -> {
+//                System.out.println("====1======");
+//                try {
+//                    Thread.sleep(1200);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                System.out.println("=====2=====");
+//            }, executor);
+//
+//        System.out.println("=====3=====");
+//
+//        f.join();
+//        f1.join();
+//
+//        System.out.println("---999------");
 
-        }
+
+        CompletableFuture<?> f1 = CompletableFuture.completedFuture(null);
+        CompletableFuture<?> f2 = CompletableFuture.completedFuture(null);
+        CompletableFuture<?> f3 = CompletableFuture.completedFuture(null);
+
+        f1 = CompletableFuture.supplyAsync(() -> {
+            System.out.println("====1======");
+            return 1;
+        });
+
+        f2 = CompletableFuture.supplyAsync(() -> {
+            System.out.println("====2======");
+            return 2;
+        });
+
+        f3 = CompletableFuture.supplyAsync(() -> {
+            System.out.println("====3======");
+            return 3;
+        });
+        System.out.println("=====4=====");
+
+        f1.join();
+        f2.join();
+        f3.join();
+        System.out.println("=====5====="+f1.get()+","+f2.get()+","+f3.get()+",");
+
+
+//
 //        ExecutorService executor = Executors.newSingleThreadExecutor();
 //        //JDK目前为止返回的都是FutureTask的实例
 //        Callable callable=()->asss("d");
@@ -78,6 +130,7 @@ public class TestB {
 //        }catch (Exception e){
 //            System.out.println("890987898"+e);
 //        }
+
 //        System.out.println();
 //        System.out.println(future.get());
 //        String str= (String) callable.call();

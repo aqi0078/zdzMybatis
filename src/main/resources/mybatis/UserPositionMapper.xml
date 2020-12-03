@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zdz.db.dao.UserPositionMapper" >
+  <resultMap id="BaseResultMap" type="com.zdz.db.model.UserPosition" >
+    <id column="f_id" property="fId" jdbcType="BIGINT" />
+    <result column="f_user_id" property="fUserId" jdbcType="BIGINT" />
+    <result column="f_contract_id" property="fContractId" jdbcType="VARCHAR" />
+    <result column="f_cross_margin" property="fCrossMargin" jdbcType="TINYINT" />
+    <result column="f_position_cost" property="fPositionCost" jdbcType="DECIMAL" />
+    <result column="f_position_size" property="fPositionSize" jdbcType="INTEGER" />
+    <result column="f_position_margin" property="fPositionMargin" jdbcType="DECIMAL" />
+    <result column="f_init_magin_rate" property="fInitMaginRate" jdbcType="DECIMAL" />
+    <result column="f_maint_magin_rate" property="fMaintMaginRate" jdbcType="DECIMAL" />
+    <result column="f_open_ord_sell_qty" property="fOpenOrdSellQty" jdbcType="DECIMAL" />
+    <result column="f_open_ord_buy_qty" property="fOpenOrdBuyQty" jdbcType="DECIMAL" />
+    <result column="f_currency_id" property="fCurrencyId" jdbcType="TINYINT" />
+    <result column="f_status" property="fStatus" jdbcType="TINYINT" />
+    <result column="f_realised_pnl" property="fRealisedPnl" jdbcType="DECIMAL" />
+    <result column="f_open_time" property="fOpenTime" jdbcType="BIGINT" />
+    <result column="f_version" property="fVersion" jdbcType="INTEGER" />
+    <result column="f_update_time" property="fUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    f_id, f_user_id, f_contract_id, f_cross_margin, f_position_cost, f_position_size, 
+    f_position_margin, f_init_magin_rate, f_maint_magin_rate, f_open_ord_sell_qty, f_open_ord_buy_qty, 
+    f_currency_id, f_status, f_realised_pnl, f_open_time, f_version, f_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_position
+    where f_id = #{fId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_user_position
+    where f_id = #{fId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zdz.db.model.UserPosition" >
+    insert into t_user_position (f_id, f_user_id, f_contract_id, 
+      f_cross_margin, f_position_cost, f_position_size, 
+      f_position_margin, f_init_magin_rate, f_maint_magin_rate, 
+      f_open_ord_sell_qty, f_open_ord_buy_qty, f_currency_id, 
+      f_status, f_realised_pnl, f_open_time, 
+      f_version, f_update_time)
+    values (#{fId,jdbcType=BIGINT}, #{fUserId,jdbcType=BIGINT}, #{fContractId,jdbcType=VARCHAR}, 
+      #{fCrossMargin,jdbcType=TINYINT}, #{fPositionCost,jdbcType=DECIMAL}, #{fPositionSize,jdbcType=INTEGER}, 
+      #{fPositionMargin,jdbcType=DECIMAL}, #{fInitMaginRate,jdbcType=DECIMAL}, #{fMaintMaginRate,jdbcType=DECIMAL}, 
+      #{fOpenOrdSellQty,jdbcType=DECIMAL}, #{fOpenOrdBuyQty,jdbcType=DECIMAL}, #{fCurrencyId,jdbcType=TINYINT}, 
+      #{fStatus,jdbcType=TINYINT}, #{fRealisedPnl,jdbcType=DECIMAL}, #{fOpenTime,jdbcType=BIGINT}, 
+      #{fVersion,jdbcType=INTEGER}, #{fUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdz.db.model.UserPosition" >
+    insert into t_user_position
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fId != null" >
+        f_id,
+      </if>
+      <if test="fUserId != null" >
+        f_user_id,
+      </if>
+      <if test="fContractId != null" >
+        f_contract_id,
+      </if>
+      <if test="fCrossMargin != null" >
+        f_cross_margin,
+      </if>
+      <if test="fPositionCost != null" >
+        f_position_cost,
+      </if>
+      <if test="fPositionSize != null" >
+        f_position_size,
+      </if>
+      <if test="fPositionMargin != null" >
+        f_position_margin,
+      </if>
+      <if test="fInitMaginRate != null" >
+        f_init_magin_rate,
+      </if>
+      <if test="fMaintMaginRate != null" >
+        f_maint_magin_rate,
+      </if>
+      <if test="fOpenOrdSellQty != null" >
+        f_open_ord_sell_qty,
+      </if>
+      <if test="fOpenOrdBuyQty != null" >
+        f_open_ord_buy_qty,
+      </if>
+      <if test="fCurrencyId != null" >
+        f_currency_id,
+      </if>
+      <if test="fStatus != null" >
+        f_status,
+      </if>
+      <if test="fRealisedPnl != null" >
+        f_realised_pnl,
+      </if>
+      <if test="fOpenTime != null" >
+        f_open_time,
+      </if>
+      <if test="fVersion != null" >
+        f_version,
+      </if>
+      <if test="fUpdateTime != null" >
+        f_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fId != null" >
+        #{fId,jdbcType=BIGINT},
+      </if>
+      <if test="fUserId != null" >
+        #{fUserId,jdbcType=BIGINT},
+      </if>
+      <if test="fContractId != null" >
+        #{fContractId,jdbcType=VARCHAR},
+      </if>
+      <if test="fCrossMargin != null" >
+        #{fCrossMargin,jdbcType=TINYINT},
+      </if>
+      <if test="fPositionCost != null" >
+        #{fPositionCost,jdbcType=DECIMAL},
+      </if>
+      <if test="fPositionSize != null" >
+        #{fPositionSize,jdbcType=INTEGER},
+      </if>
+      <if test="fPositionMargin != null" >
+        #{fPositionMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="fInitMaginRate != null" >
+        #{fInitMaginRate,jdbcType=DECIMAL},
+      </if>
+      <if test="fMaintMaginRate != null" >
+        #{fMaintMaginRate,jdbcType=DECIMAL},
+      </if>
+      <if test="fOpenOrdSellQty != null" >
+        #{fOpenOrdSellQty,jdbcType=DECIMAL},
+      </if>
+      <if test="fOpenOrdBuyQty != null" >
+        #{fOpenOrdBuyQty,jdbcType=DECIMAL},
+      </if>
+      <if test="fCurrencyId != null" >
+        #{fCurrencyId,jdbcType=TINYINT},
+      </if>
+      <if test="fStatus != null" >
+        #{fStatus,jdbcType=TINYINT},
+      </if>
+      <if test="fRealisedPnl != null" >
+        #{fRealisedPnl,jdbcType=DECIMAL},
+      </if>
+      <if test="fOpenTime != null" >
+        #{fOpenTime,jdbcType=BIGINT},
+      </if>
+      <if test="fVersion != null" >
+        #{fVersion,jdbcType=INTEGER},
+      </if>
+      <if test="fUpdateTime != null" >
+        #{fUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdz.db.model.UserPosition" >
+    update t_user_position
+    <set >
+      <if test="fUserId != null" >
+        f_user_id = #{fUserId,jdbcType=BIGINT},
+      </if>
+      <if test="fContractId != null" >
+        f_contract_id = #{fContractId,jdbcType=VARCHAR},
+      </if>
+      <if test="fCrossMargin != null" >
+        f_cross_margin = #{fCrossMargin,jdbcType=TINYINT},
+      </if>
+      <if test="fPositionCost != null" >
+        f_position_cost = #{fPositionCost,jdbcType=DECIMAL},
+      </if>
+      <if test="fPositionSize != null" >
+        f_position_size = #{fPositionSize,jdbcType=INTEGER},
+      </if>
+      <if test="fPositionMargin != null" >
+        f_position_margin = #{fPositionMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="fInitMaginRate != null" >
+        f_init_magin_rate = #{fInitMaginRate,jdbcType=DECIMAL},
+      </if>
+      <if test="fMaintMaginRate != null" >
+        f_maint_magin_rate = #{fMaintMaginRate,jdbcType=DECIMAL},
+      </if>
+      <if test="fOpenOrdSellQty != null" >
+        f_open_ord_sell_qty = #{fOpenOrdSellQty,jdbcType=DECIMAL},
+      </if>
+      <if test="fOpenOrdBuyQty != null" >
+        f_open_ord_buy_qty = #{fOpenOrdBuyQty,jdbcType=DECIMAL},
+      </if>
+      <if test="fCurrencyId != null" >
+        f_currency_id = #{fCurrencyId,jdbcType=TINYINT},
+      </if>
+      <if test="fStatus != null" >
+        f_status = #{fStatus,jdbcType=TINYINT},
+      </if>
+      <if test="fRealisedPnl != null" >
+        f_realised_pnl = #{fRealisedPnl,jdbcType=DECIMAL},
+      </if>
+      <if test="fOpenTime != null" >
+        f_open_time = #{fOpenTime,jdbcType=BIGINT},
+      </if>
+      <if test="fVersion != null" >
+        f_version = #{fVersion,jdbcType=INTEGER},
+      </if>
+      <if test="fUpdateTime != null" >
+        f_update_time = #{fUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdz.db.model.UserPosition" >
+    update t_user_position
+    set f_user_id = #{fUserId,jdbcType=BIGINT},
+      f_contract_id = #{fContractId,jdbcType=VARCHAR},
+      f_cross_margin = #{fCrossMargin,jdbcType=TINYINT},
+      f_position_cost = #{fPositionCost,jdbcType=DECIMAL},
+      f_position_size = #{fPositionSize,jdbcType=INTEGER},
+      f_position_margin = #{fPositionMargin,jdbcType=DECIMAL},
+      f_init_magin_rate = #{fInitMaginRate,jdbcType=DECIMAL},
+      f_maint_magin_rate = #{fMaintMaginRate,jdbcType=DECIMAL},
+      f_open_ord_sell_qty = #{fOpenOrdSellQty,jdbcType=DECIMAL},
+      f_open_ord_buy_qty = #{fOpenOrdBuyQty,jdbcType=DECIMAL},
+      f_currency_id = #{fCurrencyId,jdbcType=TINYINT},
+      f_status = #{fStatus,jdbcType=TINYINT},
+      f_realised_pnl = #{fRealisedPnl,jdbcType=DECIMAL},
+      f_open_time = #{fOpenTime,jdbcType=BIGINT},
+      f_version = #{fVersion,jdbcType=INTEGER},
+      f_update_time = #{fUpdateTime,jdbcType=TIMESTAMP}
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+</mapper>
